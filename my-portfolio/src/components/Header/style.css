@@ -1,11 +1,13 @@
 .wrapper {
-  font-family: 'Times New Roman', Times, serif;
-  color: white;
+  font-family: cursive;
+  position: static;
   margin: 24px;
   display: flex;
   height: 150px;
   width: 100%;
   border-bottom: 2px;
+  justify-content: center;
+
 }
 
 .container{
@@ -14,5 +16,15 @@
 
 .info{
   padding-right: 16px;
+  color: white;
+  text-decoration: none;
+
+}
+
+.contact{
+  color: white;
+  text-decoration: none;
+
+
 }
 

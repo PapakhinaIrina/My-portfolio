@@ -6,7 +6,7 @@ import './style.css';
 export default function Main() {
 
   return(
-    <div className="wrapper">
+    <div className="wrapperMain">
       "Main"
     </div>
   )
