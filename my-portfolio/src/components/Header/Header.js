@@ -11,13 +11,13 @@ export default function Header() {
     <div className="wrapper">
       <div className="container">
         <Link to="/info" className="info"> 
-        About me 
+          ABOUT  
         </Link>
-
-
-
         <Link to="/contact" className="contact"> 
-        Contact
+          CONTACT
+        </Link>
+        <Link className="portfolio">
+          PORTFOLIO
         </Link>
       </div>
     </div>

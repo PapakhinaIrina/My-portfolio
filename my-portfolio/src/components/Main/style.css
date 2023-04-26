@@ -1,3 +1,11 @@
-.wrapper {
-  margin: 24px;
+.wrapperMain {
+  background-color: #ffffea;
+  height: 700px;
+}
+
+.headerContainer{
+}
+
+
+.mainContainer{
 }
