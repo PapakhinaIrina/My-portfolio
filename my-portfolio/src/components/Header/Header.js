@@ -16,7 +16,7 @@ export default function Header() {
         <Link to="/contact" className="contact"> 
           CONTACT
         </Link>
-        <Link className="portfolio">
+        <Link to="/portfolio"className="portfolio">
           PORTFOLIO
         </Link>
       </div>

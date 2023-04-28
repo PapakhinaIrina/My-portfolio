@@ -6,6 +6,7 @@ import './style.css';
 
 export default function Main() {
 
+
   return(
     <div className="wrapperMain">
       <div className="headerContainer">
@@ -14,7 +15,7 @@ export default function Main() {
 
       <div className="mainContainer">
         {/* <p> <img src="/icon.jng" alt=""/></p> ЗДЕСЬ ДОЛЖНА БЫТЬ КАРТИНКА */}
-        "Main"
+        
       </div>
 
     </div>

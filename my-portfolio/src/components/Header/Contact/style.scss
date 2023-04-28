@@ -10,17 +10,34 @@ li{
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-  padding-top: 150px;
+  padding-top: 24px;
   font-family: 'Dosis', sans-serif;
   position: relative;
 }
 
-.container{
+.wrapperConnectPage{
+  display: flex;
+  justify-content: center;
+  margin-top: 150px;
   font-family: 'Dosis', sans-serif;
   color: #777777;
-  flex-direction: column;
 }
 
+.home{
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  cursor: pointer;
+  svg{
+    g {
+      stroke: #777777;
+    }
+    circle {
+      stroke: #777777;
+      fill: #777777;
+    }
+  }
+}
 .social{
   display: flex;
 }
@@ -32,7 +49,7 @@ li{
     }
     circle {
       stroke: #777777;
-      fill: azure;
+      fill: #777777;
     }
   }
 }
@@ -56,17 +73,24 @@ li{
   }
 }
 
+.connect{
+  font-family: 'Dosis', sans-serif;
+
+}
 
 
 body {
   background: #ede9de; 
 }
+
 .box {
-  left: 44%;
+  left: 48%;
   margin: auto -50px;
   position: absolute;
+  align-items: center;
   top: 80%;
 }
+
 .swing div {
   border-radius: 50%;
   float: left;
@@ -74,7 +98,7 @@ body {
   width: 1em;
 }
 .swing div:nth-of-type(1) {
-  background: -webkit-linear-gradient(left, #443523 0%, #7b5c35 100%);
+  background: -webkit-linear-gradient(left, #443523 0%, #443523 100%);
   background: linear-gradient(to right, #443523 0%, #7b5c35 100%);
 }
 .swing div:nth-of-type(2) {
@@ -82,16 +106,16 @@ body {
   background: linear-gradient(to right, #443523 0%, #b38c5e 100%);
 }
 .swing div:nth-of-type(3) {
-  background: -webkit-linear-gradient(left, #6b5438 0%, #b38c5e 100%);
-  background: linear-gradient(to right, #b38c5e 0%, #d1a573 100%);
+  background: -webkit-linear-gradient(left, #312619 0%, #443523 100%);
+  background: linear-gradient(to right, #7e6442 0%, #e2b98a 100%);
 }
 .swing div:nth-of-type(4) {
-  background: -webkit-linear-gradient(left, #bc9262 0%, #b38c5e 100%);
-  background: linear-gradient(to right, #ca9d69 0%, #b38c5e 100%);
+  background: -webkit-linear-gradient(left, #8f6e48 0%, #b78f62 100%);
+  background: linear-gradient(to right, #ac8353 0%, #eeba7e 100%);
 }
 .swing div:nth-of-type(5) {
-  background: -webkit-linear-gradient(left, #b38c5e 0%, #c59967 100%);
-  background: linear-gradient(to right, #b38c5e 0%, #c99d6b 100%);
+  background: -webkit-linear-gradient(left, #c89c69 0%, #c59967 100%);
+  background: linear-gradient(to right, #c69b69 0%, #c99d6b 100%);
 }
 .swing div:nth-of-type(6) {
   background: -webkit-linear-gradient(left, #b38c5e 0%, #f2c38a 100%);

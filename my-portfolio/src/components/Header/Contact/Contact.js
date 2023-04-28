@@ -1,16 +1,20 @@
 import React from "react";
 import { Icon } from '@iconify/react';
 import {  Animation } from './Animation';
-
+import { Link } from "react-router-dom";
 import './style.scss'
 
 
 export default function Contact () {
 
-  return (
-    <div className="wrapper">
 
-      <div className="container">
+  return (
+    <div className="wrapperConnectPage">
+
+      <div className="containerConnectPage">
+        <Link to="/home" className="home">
+          <Icon icon="line-md:home-md"width={46} />
+        </Link>
 
         <h3> Связь </h3>
 
@@ -28,9 +32,8 @@ export default function Contact () {
             <Icon icon="ion:phone-portrait-outline" width={46} />
             +7(926)424-92-79
         </div>
-        <p></p>
-
-
+          <br/>
+          <br/>
         <h3> Соцсети </h3>
         <div className="social">
             <li>

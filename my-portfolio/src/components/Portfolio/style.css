@@ -1,0 +1,14 @@
+.wrapperPortfolio{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.containerPortfolio{
+  justify-content: center;
+  align-items: center;
+}
+
+.cases{
+  justify-content: center;
+}
