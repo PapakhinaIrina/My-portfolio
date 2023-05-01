@@ -3,6 +3,7 @@ import Info from "./components/Header/Info/Info";
 import Contact from "./components/Header/Contact/Contact";
 import Main from "./components/Main/Main";
 import Portfolio from "./components/Portfolio/Portfolio";
+import SignUp from './components/Portfolio/Cases/SignUp/SignUp';
 
 
 
@@ -14,7 +15,8 @@ export default function AppRouter () {
           <Route exact path='/home' element={<Main />}/>
           <Route path='/info' element={<Info />} />
           <Route path="/contact" element={<Contact />} />  
-          <Route path="/portfolio" element={<Portfolio />} />     
+          <Route path="/portfolio" element={<Portfolio />} />  
+          <Route path="/portfolio/signup" element={<SignUp />}/>
       </Routes>
     </BrowserRouter>
   )

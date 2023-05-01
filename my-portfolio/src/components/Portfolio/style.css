@@ -10,5 +10,6 @@
 }
 
 .cases{
-  justify-content: center;
+  display: flex;
+  margin: 24px;
 }
