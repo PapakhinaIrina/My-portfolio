@@ -7,9 +7,10 @@
 .containerPortfolio{
   justify-content: center;
   align-items: center;
+
 }
 
 .cases{
   display: flex;
-  margin: 24px;
+  padding: 16px;
 }

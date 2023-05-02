@@ -1,0 +1,47 @@
+@import 'material-symbols';
+
+:root {
+  --color-primary: yellow;
+  --tab-width: 300px;
+  --button-width: 64px;
+}
+
+* {
+  box-sizing: content-box;
+}
+
+
+html, body 
+  .wrapper {
+    height: 100%;
+  }
+
+
+body {
+  display: grid;
+  place-items: center;
+  margin: 0;
+  font-family: 'Dosis', sans-serif;
+  line-height: 1.5;
+  color: aquamarine;
+}
+
+
+
+
+.content {
+  position: relative;
+  overflow: hidden;
+  height: 140px;
+}
+
+.content-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  width: calc(var(--tab-width) * 3);
+  transition: 0.3s;
+}
+
