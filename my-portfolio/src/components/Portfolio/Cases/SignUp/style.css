@@ -24,7 +24,7 @@ button{
 
 .containerSignUp {
   width: 400px;
-  padding: 60px 30px 32px;
+  padding: 40px 30px 32px;
   border-radius: 8px;
   background-color: rgb(255, 184, 61);
   text-align: center;
@@ -38,7 +38,7 @@ button{
 }
 
 .containerSignUp img {
-  width: 260px;
+  width: 190px;
   padding: 5px;
   margin-bottom: 10px;
 }
