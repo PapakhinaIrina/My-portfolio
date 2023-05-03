@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
+import { Icon } from '@iconify/react';
 import image from './image.svg';
-import './style.css';
+import './style.scss';
 
 const userNames = ['David', 'John', 'Anna'];
 
@@ -58,25 +60,31 @@ export default function SignUp () {
 
 
   return (
-    <div className="containerSignUp">
-      <img src={image} alt=""/> 
-      <h2> Регистрация </h2>
-      <form className="form">
-        <UserName
-          isLoading={isLoading}
-          isValid={isValid}
-          handleChange={handleChange}
+    <>
+      <Link to="/portfolio" className="iconArrow">
+        <Icon icon="ic:outline-arrow-circle-left"width={46} />
+      </Link>
+      
+      <div className="containerSignUp">
+        <img src={image} alt=""/> 
+        <h2> Регистрация </h2>
+        <form className="form">
+          <UserName
+            isLoading={isLoading}
+            isValid={isValid}
+            handleChange={handleChange}
+            />
+          <input 
+          name="password"
+          spellCheck="false"
+          className="control"
+          placeholder="Пароль"
           />
-        <input 
-        name="password"
-        spellCheck="false"
-        className="control"
-        placeholder="Пароль"
-        />
-        <button disabled={!isValid} className="control" type="button">
-          Присоединяйся
-        </button>
-      </form>
-    </div>
+          <button disabled={!isValid} className="control" type="button">
+            Присоединяйся
+          </button>
+        </form>
+      </div>
+    </>
   )
 };

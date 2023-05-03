@@ -37,7 +37,7 @@ body {
 }
 
 .underline {
-  border-bottom: 4px solid rgb(112, 80, 5);
+  border-bottom: 4px solid rgb(255, 179, 3);
   transition: 0.4s;
   filter: drop-shadow(5px 5px 5px rgba(248, 209, 34, 0.4));
 }

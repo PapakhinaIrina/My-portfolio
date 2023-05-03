@@ -59,7 +59,7 @@ button{
   height: 56px;
   padding: 0 16px;
   border: 0;
-  background: rgb(255 255 255 / 30%);
+  background: RGB(255 255 255 / 30%);
   color: inherit;
   border-radius: 6px;
   margin: 8px 0;
@@ -132,4 +132,16 @@ button.control:disabled {
 
 .validation.invalid {
   height: 30px;
+}
+
+.iconArrow {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  cursor: pointer;
+  svg{
+      path{
+        fill: #777777;
+      }
+  }
 }
