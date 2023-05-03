@@ -2,13 +2,10 @@ import React, {useState} from "react";
 import { Icon } from '@iconify/react';
 
 
-import './style.css';
+import './style.scss';
 
 
-const tabHeaders = ["home", "lock", "settings"];
-const buttonWidth = 64;
 const tabWidth = 300;
-// const tabContent = [];
 
 
 
@@ -20,26 +17,26 @@ export default function Widget () {
 
   return (
     <article className="widget">
-      <header>
+      <header className="containerIcon">
         <div>
-          <button onClick={() => setActiveIndex(1)}>
-            <Icon icon="carbon:home"width={40} />
+          <button id="1" onClick={() => setActiveIndex(1)}>
+            <Icon icon="carbon:home"width={56} />
           </button>
         </div>
 
         <div>
-          <button onClick={() => setActiveIndex(2)}>
-            <Icon icon="ic:round-lock-open"width={40} />
+          <button id="2" onClick={() => setActiveIndex(2)}>
+            <Icon icon="ic:round-lock-open"width={56} />
           </button>
         </div>
 
         <div>
-          <button onClick={() => setActiveIndex(3)}>
-            <Icon icon="ic:outline-settings"width={40} />
+          <button id="3" onClick={() => setActiveIndex(3)}>
+            <Icon icon="ic:outline-settings"width={56} />
           </button>
         </div>
 
-
+{/* 
         {tabHeaders.map((tab, index) => (
           <button
           onClick={() => setActiveIndex(index)}
@@ -53,7 +50,7 @@ export default function Widget () {
         style={{
           translate: `${activeIndex ? activeIndex * buttonWidth : 0}px 0`
         }}>
-        </div>
+        </div> */}
       </header>
 
       <div className="content">
