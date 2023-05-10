@@ -21,6 +21,9 @@ li{
   margin-top: 150px;
   font-family: 'Dosis', sans-serif;
   color: #777777;
+  @media screen and (min-width: 600px) {
+    margin-top: 0;
+    }
 }
 
 .home{

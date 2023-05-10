@@ -23,9 +23,15 @@ export default function Portfolio () {
             </div>
 
             <div>
-            <Link to="/portfolio/widget"className="portfolio">
-              WIDGET
-            </Link>
+              <Link to="/portfolio/widget"className="portfolio">
+                 WIDGET
+              </Link>
+            </div>
+
+            <div>
+              <Link to="/portfolio/todo"className="portfolio">
+                TODO
+              </Link>
             </div>
 
 

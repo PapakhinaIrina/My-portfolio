@@ -5,6 +5,8 @@ import Main from "./components/Main/Main";
 import Portfolio from "./components/Portfolio/Portfolio";
 import SignUp from './components/Portfolio/Cases/SignUp/SignUp';
 import Widget from './components/Portfolio/Cases/Widget/Widget';
+import ToDo from './components/Portfolio/Cases/ToDo/ToDo';
+
 
 
 
@@ -19,6 +21,8 @@ export default function AppRouter () {
           <Route path="/portfolio" element={<Portfolio />} />  
           <Route path="/portfolio/signup" element={<SignUp />}/>
           <Route path="/portfolio/widget" element={<Widget />}/>
+          <Route path="/portfolio/todo" element={<ToDo />}/>
+
 
       </Routes>
     </BrowserRouter>
