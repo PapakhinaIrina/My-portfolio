@@ -1,19 +1,48 @@
 body {
-  background-color: rgb(228, 228, 232);
+  /* background-color: rgb(228, 228, 232); */
   width: 100%;
   height: 100%
 }
 
-.wrapper {
-  width: 500px;
+.wrapperToDo {
+  background-color: rgb(228, 228, 232);
   display: flex;
+
 }
 
-.container {
+.containerToDo {
   padding: 0;
+
 }
 
-
-.header {
+.headerToDo {
   font-family: 'Dosis', sans-serif;
+}
+
+.calendarWrapper {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  gap: 1px;
+  background-color: hwb(0 100% 0%);
+}
+
+.dayWrapper {
+  min-width: 140px;
+  min-height: 80px;
+  color: rgb(105, 112, 112);
+
+}
+
+.rowInCell{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.currentDay{
+  height: 33px;
+  width: 33px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
