@@ -13,6 +13,7 @@ export default function Calendar () {
   const arrDays = [...Array(totalDays)].map(() => day.add(1, 'day').clone());
 
   const isCurrentDay = (day) => moment().isSame(day, 'day');
+  const isCurrentMonth = (month) => moment().isSame(month, 'month');
 
   return (
     <>
@@ -24,9 +25,10 @@ export default function Calendar () {
       ))}
       {
         arrDays.map((dayItem) => ( 
-          <div className='dayWrapper' 
+          <div className={isCurrentMonth(dayItem) ? 'currentMonth' : 'dayWrapper'} 
             key={dayItem.unix()}
             isWeekend={dayItem.day === 6 || dayItem.day === 0}
+            isCurrentMonth={isCurrentMonth(dayItem)}
             >
             <div className='rowInCell'>
               <div className={ isCurrentDay(dayItem) ? 'currentDay' : '' }>

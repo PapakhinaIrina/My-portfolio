@@ -8,13 +8,11 @@ body {
 .wrapperToDo {
   background-color: rgb(228, 228, 232);
   display: flex;
-
 }
 
 .containerToDo {
   display: flex;
   flex-direction: column;
-
 }
 
 .headerToDo {
@@ -37,8 +35,7 @@ body {
 .dayWrapper {
   min-width: 140px;
   min-height: 80px;
-  color: rgb(105, 112, 112);
-
+  color: rgba(105, 112, 112, 0.409);
 }
 
 .rowInCell{
@@ -56,7 +53,7 @@ body {
 
 .buttonAdd{
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   svg {
     path{
       fill: rgba(105, 112, 112, 0.348);
@@ -75,4 +72,10 @@ body {
   font-family: 'Dancing Script';
   display: flex;
   justify-content: flex-end;
+}
+
+.currentMonth{
+  min-width: 140px;
+  min-height: 80px;
+  color: rgb(69, 132, 132);
 }
