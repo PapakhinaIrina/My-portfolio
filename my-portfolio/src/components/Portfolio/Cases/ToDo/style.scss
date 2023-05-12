@@ -12,7 +12,6 @@ body {
 }
 
 .containerToDo {
-  padding: 0;
   display: flex;
   flex-direction: column;
 
@@ -30,7 +29,7 @@ body {
 .calendarWrapper {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(6, 1fr);
+  grid-template-rows: repeat(6, 0.7fr);
   gap: 1px;
   background-color: hwb(0 100% 0%);
 }
@@ -70,3 +69,10 @@ body {
   border-radius:  50%;
 }
 
+.weekWrapper{
+  min-width: 140px;
+  max-height: 20px;
+  font-family: 'Dancing Script';
+  display: flex;
+  justify-content: flex-end;
+}

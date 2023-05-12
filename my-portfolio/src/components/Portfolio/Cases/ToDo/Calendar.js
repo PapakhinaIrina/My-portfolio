@@ -14,23 +14,29 @@ export default function Calendar () {
 
   const isCurrentDay = (day) => moment().isSame(day, 'day');
 
-return (
-  <div className='calendarWrapper'>
-    {
-      arrDays.map((dayItem) => ( 
-        <div className='dayWrapper' 
-          key={dayItem.format('DDMMYYYY')}
-          isWeekend={dayItem.day === 6 || dayItem.day === 0}
-          >
-          <div className='rowInCell'>
-            <div className={ isCurrentDay(dayItem) ? 'currentDay' : '' }>
-              {dayItem.format('D')}
+  return (
+    <>
+      <div className='calendarWrapper'>
+        {[...Array(7)].map((_, i) => (
+          <div className='weekWrapper'> 
+            {moment().day(i + 1).format('ddd')}
+          </div>
+      ))}
+      {
+        arrDays.map((dayItem) => ( 
+          <div className='dayWrapper' 
+            key={dayItem.unix()}
+            isWeekend={dayItem.day === 6 || dayItem.day === 0}
+            >
+            <div className='rowInCell'>
+              <div className={ isCurrentDay(dayItem) ? 'currentDay' : '' }>
+                {dayItem.format('D')}
+              </div>
             </div>
           </div>
-        </div>
-      ))
-    }
-  </div>
-
-)
+        ))
+      }
+    </div>
+    </>
+  )
 } 
