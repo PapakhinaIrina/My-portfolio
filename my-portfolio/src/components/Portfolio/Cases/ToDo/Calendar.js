@@ -18,22 +18,21 @@ export default function Calendar (props) {
   const [event, setEvent] = useState(null);
   const [isShowForm, setIsShowForm] = useState(false);
 
-  const [method, setMethod] = useState(null)
+  const [method, setMethod] = useState(null);
+
+  const startDate =  today.startOf('week');
+  const endDate = today.endOf('week');
+
+  const startDateQuery = startDate.clone().format('X');
+  const endDateQuery = endDate.clone().add(totalDays, 'days').format('X');
 
   useEffect(() => {
     fetch(`${url}/events?date_gte=${startDateQuery}&date_lte=${endDateQuery}`)
     .then(res => res.json)
     .then(res => setEvents(res))
-  }, []);
-
-  const startDate =  today.startOf('week');
-  const endDate = today.endOf('week');
+  }, [startDateQuery, endDateQuery]);
   
   const day = startDate.clone();
-
-  const startDateQuery = startDate.clone().format('X');
-  const endDateQuery = endDate.clone().add(totalDays, 'days').format('X');
-
 
   const arrDays = [...Array(totalDays)].map(() => day.add(1, 'day').clone());
 
@@ -44,18 +43,46 @@ export default function Calendar (props) {
     setIsShowForm(true);
     setEvent(eventForUpdate || defaultEvent);
     setMethod(methodName);
-  }
+  };
 
   const cancelFormHandler = (e) => {
     setIsShowForm(false);
     setEvent(null);
-  }
+  };
 
   const changeEventHandler = (text, field) => {
     setEvent(prev => ({
       ...prev,
       [field]: text
     }))
+  };
+
+  const eventFetchHandler = () => {
+    const fetchUrl = method === 'Update' ? `${url}/events/${event.id}` : `${url}/events`;
+    const httpMethod = method === 'Update' ? 'PUT' : 'POST';
+
+    fetch(fetchUrl, {
+      method: httpMethod,
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        title: event.title,
+        description: event.description,
+        date: event.date
+      })
+        .then(res => res.json())
+        .then(res => {
+          console.log(res);
+
+          if(method === 'Update') {
+            setEvent( prevState => prevState.map(eventEl => eventEl.id === res.id ? res : eventEl))
+          } else {
+            setEvents(prevState => [...prevState, res]);
+          }  
+          cancelFormHandler()
+        })
+    })
   }
 
   return (
@@ -80,7 +107,7 @@ export default function Calendar (props) {
             />
             <div className='buttonsEventWrapper'>
               <button onClick={() => cancelFormHandler()}>Cancel</button>
-              <button>{method}</button>
+              <button onClick={() => eventFetchHandler()}>{method}</button>
             </div>
           </div>
         </div>
