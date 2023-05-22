@@ -22,8 +22,6 @@ export default function AppRouter () {
           <Route path="/portfolio/signup" element={<SignUp />}/>
           <Route path="/portfolio/widget" element={<Widget />}/>
           <Route path="/portfolio/todo" element={<ToDo />}/>
-
-
       </Routes>
     </BrowserRouter>
   )

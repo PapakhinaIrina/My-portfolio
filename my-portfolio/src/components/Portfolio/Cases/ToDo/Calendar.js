@@ -1,16 +1,12 @@
-import { useEffect, useState } from 'react';
+import React, {useEffect, useState}from 'react';
 import moment from 'moment';
 import './style.scss';
 
-const url = 'http://localhost:5000';
 const totalDays = 42;
+const url = 'http://localhost:5000';
 
-export default function Calendar () {
-  const startDate =  moment().startOf('week');
-  const endDate = moment().endOf('week');
-
-  const startDateQuery = startDate.clone().format('X');
-  const endDateQuery = endDate.clone().add(totalDays, 'days').format('X');
+export default function Calendar (props) {
+  const {today} = props;
 
   const [events, setEvents] = useState([]);
 
@@ -20,8 +16,15 @@ export default function Calendar () {
     .then(res => setEvents(res))
   }, []);
 
-
+  const startDate =  today.startOf('week');
+  const endDate = today.endOf('week');
+  
   const day = startDate.clone();
+
+  const startDateQuery = startDate.clone().format('X');
+  const endDateQuery = endDate.clone().add(totalDays, 'days').format('X');
+
+
   const arrDays = [...Array(totalDays)].map(() => day.add(1, 'day').clone());
 
   const isCurrentDay = (day) => moment().isSame(day, 'day');
@@ -35,6 +38,7 @@ export default function Calendar () {
             {moment().day(i + 1).format('ddd')}
           </div>
         ))}
+        
         {
           arrDays.map((dayItem) => ( 
             <div className={isCurrentMonth(dayItem) ? 'currentMonth' : 'dayWrapper'} 
@@ -42,11 +46,28 @@ export default function Calendar () {
               isWeekend={dayItem.day === 6 || dayItem.day === 0}
               isCurrentMonth={isCurrentMonth(dayItem)}
               >
-              <div className='rowInCell'>
-                <div className={ isCurrentDay(dayItem) ? 'currentDay' : '' }>
-                  {dayItem.format('D')}
+                <div className='showDayWrapper'>
+                  <div className='rowInCell'>
+                    <div className={ isCurrentDay(dayItem) ? 'currentDay' : '' }>
+                      {dayItem.format('D')}
+                    </div>
+                  </div>
                 </div>
-              </div>
+
+                <ul className='evenListWrapper'>
+                  {
+                  events
+                  .filter(ev => ev.date >= dayItem.format('X') && ev.date <= dayItem.clone().endOf('day').format('X'))
+                  .map(ev => 
+                      <div type='button' className='eventWrapper'>
+                        <li>
+                          key={ev.id}
+                          {ev.title}
+                        </li>
+                      </div>
+                    )
+                }
+                </ul>
             </div>
           ))
         }
