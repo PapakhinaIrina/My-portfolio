@@ -8,6 +8,7 @@ body {
 .wrapperToDo {
   background-color: rgb(228, 228, 232);
   display: flex;
+  position: relative;
 }
 
 .containerToDo {
@@ -54,6 +55,7 @@ body {
 .rowInCell{
   display: flex;
   justify-content: flex-end;
+  cursor: pointer;
 }
 
 .currentDay{
@@ -116,4 +118,65 @@ body {
   text-overflow: ellipsis;
   white-space: nowrap;
   width: 114px;
+}
+
+.formWrapper{
+  position: absolute;
+  z-index: 100;
+  background-color: rgba(255, 255, 255, 0.499);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.formContainer{
+  background-color: rgba(251, 251, 251, 0.707);
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;  height: 120px;
+  padding: 8px;
+  width: 300px;
+
+}
+
+.eventTitle{
+  background-color: rgb(251, 249, 246);
+  border: 1px solid rgba(184, 182, 182, 0.645);
+  border-radius: 8px;
+  color: rgba(68, 70, 70, 0.885);
+  font-family: 'Dancing Script';
+  font-size: 20px;
+  outline: unset;
+  padding: 4px 14px;
+  width: 100%;
+}
+
+.eventDescription{
+  background-color: rgb(244, 243, 241);
+  border: 1px solid rgba(184, 182, 182, 0.556);
+  border-radius: 8px;
+  color: rgba(68, 70, 70, 0.885);
+  font-family: 'Dancing Script';
+  font-size: 20px;
+  margin-top: 4px;
+  padding: 4px 14px;
+  outline: unset;
+  width: 100%;
+}
+
+.buttonsEventWrapper{
+  display: flex;
+  justify-content: flex-end;
+  padding: 8px 14px;
+  button{
+    font-family: 'Dancing Script';
+    font-size: 15px;
+    font-weight:bolder;
+    color: rgb(73, 79, 79);
+  }
 }

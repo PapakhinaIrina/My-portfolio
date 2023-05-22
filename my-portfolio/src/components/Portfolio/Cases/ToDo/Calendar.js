@@ -4,11 +4,21 @@ import './style.scss';
 
 const totalDays = 42;
 const url = 'http://localhost:5000';
+const defaultEvent = {
+  title: '',
+  description: '',
+  date: moment().format('X')
+};
 
 export default function Calendar (props) {
   const {today} = props;
 
   const [events, setEvents] = useState([]);
+
+  const [event, setEvent] = useState(null);
+  const [isShowForm, setIsShowForm] = useState(false);
+
+  const [method, setMethod] = useState(null)
 
   useEffect(() => {
     fetch(`${url}/events?date_gte=${startDateQuery}&date_lte=${endDateQuery}`)
@@ -30,15 +40,59 @@ export default function Calendar (props) {
   const isCurrentDay = (day) => moment().isSame(day, 'day');
   const isCurrentMonth = (month) => moment().isSame(month, 'month');
 
+  const openFormHandler = (methodName, eventForUpdate) => {
+    setIsShowForm(true);
+    setEvent(eventForUpdate || defaultEvent);
+    setMethod(methodName);
+  }
+
+  const cancelFormHandler = (e) => {
+    setIsShowForm(false);
+    setEvent(null);
+  }
+
+  const changeEventHandler = (text, field) => {
+    setEvent(prev => ({
+      ...prev,
+      [field]: text
+    }))
+  }
+
   return (
     <>
+    {
+      isShowForm ? (
+        <div className='formWrapper' onClick={() => cancelFormHandler()}>
+          <div className='formContainer' onClick={(e) => e.stopPropagation()}>
+            <input 
+              className='eventTitle' 
+              type='text' 
+              placeholder='Title' 
+              value={event ? event.title : ''}
+              onChange={(e) => changeEventHandler(e.target.value, 'title')} 
+            />
+            <input 
+              className='eventDescription' 
+              type='text' 
+              placeholder='Description' 
+              value={event ? event.description : ''}
+              onChange={(e) => changeEventHandler(e.target.value, 'description')}  
+            />
+            <div className='buttonsEventWrapper'>
+              <button onClick={() => cancelFormHandler()}>Cancel</button>
+              <button>{method}</button>
+            </div>
+          </div>
+        </div>
+      ) : null
+    }
       <div className='calendarWrapper'>
         {[...Array(7)].map((_, i) => (
           <div className='weekWrapper'> 
             {moment().day(i + 1).format('ddd')}
           </div>
         ))}
-        
+
         {
           arrDays.map((dayItem) => ( 
             <div className={isCurrentMonth(dayItem) ? 'currentMonth' : 'dayWrapper'} 
@@ -48,7 +102,7 @@ export default function Calendar (props) {
               >
                 <div className='showDayWrapper'>
                   <div className='rowInCell'>
-                    <div className={ isCurrentDay(dayItem) ? 'currentDay' : '' }>
+                    <div className={ isCurrentDay(dayItem) ? 'currentDay' : '' } onDoubleClick={() => openFormHandler('Add')}>
                       {dayItem.format('D')}
                     </div>
                   </div>
@@ -59,9 +113,8 @@ export default function Calendar (props) {
                   events
                   .filter(ev => ev.date >= dayItem.format('X') && ev.date <= dayItem.clone().endOf('day').format('X'))
                   .map(ev => 
-                      <div type='button' className='eventWrapper'>
-                        <li>
-                          key={ev.id}
+                      <div type='button' className='eventWrapper' onDoubleClick={() => openFormHandler('Change', event)}>
+                        <li key={ev.id}>
                           {ev.title}
                         </li>
                       </div>
