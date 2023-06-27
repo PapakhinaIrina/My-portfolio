@@ -1,14 +1,25 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Calendar from './Calendar';
 import { Icon } from '@iconify/react';
 import moment from "moment";
 
 import './style.scss'
 
-
-
+const url = 'http://localhost:3001';
 export default function ToDo () {
+
   const [today, setToday] = useState(moment());
+  const [events, setEvents] = useState([]);
+  const [currentDayEvents, setCurrentDayEvents] = useState([]);
+
+  const isStartCurrentDay = moment().clone().startOf('day').format('x');
+  const isEndCurrentDay = moment().clone().endOf('day').format('x');
+
+  useEffect(() => {
+    fetch(`${url}/events?date_gte=${isStartCurrentDay}&date_lte=${isEndCurrentDay}`)
+    .then(res => res.json())
+    .then(res => setCurrentDayEvents(res))
+  }, [isStartCurrentDay, isEndCurrentDay, setCurrentDayEvents, setEvents]);
 
   const prevHandler = () => setToday(prev => prev.clone().subtract(1, 'month'));
   const todayHandler = () => setToday(moment());
@@ -32,8 +43,28 @@ export default function ToDo () {
 
         </div>
 
-        <div className="calendar"><Calendar today={today}/></div>
-        <div className="tasks">Задачи</div>
+        <div className="calendar">
+          <Calendar 
+            events={events} 
+            setEvents={setEvents} 
+            today={today}/>
+        </div>
+
+        <div className="tasks">Tasks for today :
+          <div className="tasksList">
+            {currentDayEvents.length > 0 ? currentDayEvents.map(task => 
+            <div className="taskContainer">
+              <div className="taskItem" key={task.id}>
+                  <Icon icon="mdi:dot" width={28} />
+                  <div className="taskTitle">{task.title}</div>
+                  <div className="taskDescription">{task.description}</div>
+              </div>
+            </div>
+            ) : null
+            }
+          </div>
+        
+        </div>
         <div className="buttonAdd">
           <button>
             <Icon icon="fluent:add-circle-28-regular"width={56} />

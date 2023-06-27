@@ -2,25 +2,24 @@ import React, {useEffect, useState}from 'react';
 import moment from 'moment';
 import './style.scss';
 
+const url = 'http://localhost:3001';
 const totalDays = 42;
-const url = 'http://localhost:5000';
 const defaultEvent = {
   title: '',
   description: '',
+  duration: 1,
   date: moment().format('X')
 };
 
 export default function Calendar (props) {
-  const {today} = props;
+  const {today, setEvents, events} = props;
 
-  const [events, setEvents] = useState([]);
+  const [method, setMethod] = useState(null);
 
   const [event, setEvent] = useState(null);
   const [isShowForm, setIsShowForm] = useState(false);
 
-  const [method, setMethod] = useState(null);
-
-  const startDate =  today.startOf('week');
+  const startDate = today.startOf('week');
   const endDate = today.endOf('week');
 
   const startDateQuery = startDate.clone().format('X');
@@ -28,9 +27,9 @@ export default function Calendar (props) {
 
   useEffect(() => {
     fetch(`${url}/events?date_gte=${startDateQuery}&date_lte=${endDateQuery}`)
-    .then(res => res.json)
+    .then(res => res.json())
     .then(res => setEvents(res))
-  }, [startDateQuery, endDateQuery]);
+  }, [startDateQuery, endDateQuery, setEvents]);
   
   const day = startDate.clone();
 
@@ -39,10 +38,14 @@ export default function Calendar (props) {
   const isCurrentDay = (day) => moment().isSame(day, 'day');
   const isCurrentMonth = (month) => moment().isSame(month, 'month');
 
-  const openFormHandler = (methodName, eventForUpdate) => {
-    setIsShowForm(true);
-    setEvent(eventForUpdate || defaultEvent);
+  const openFormHandler = (methodName, eventForUpdate, dayItem) => {
+    setEvent(eventForUpdate || {...defaultEvent, date: dayItem.format('X')});
     setMethod(methodName);
+  };
+
+  const openModalFormHandler = (methodName, eventForUpdate, dayItem) => {
+    setIsShowForm(true);
+    openFormHandler(methodName, eventForUpdate, dayItem);
   };
 
   const cancelFormHandler = (e) => {
@@ -57,62 +60,87 @@ export default function Calendar (props) {
     }))
   };
 
-  const eventFetchHandler = () => {
-    const fetchUrl = method === 'Update' ? `${url}/events/${event.id}` : `${url}/events`;
-    const httpMethod = method === 'Update' ? 'PUT' : 'POST';
+  const fetchHandler = (fetchUrl, eventForUpdate, httpMethod) => {
 
     fetch(fetchUrl, {
       method: httpMethod,
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        title: event.title,
-        description: event.description,
-        date: event.date
-      })
-        .then(res => res.json())
-        .then(res => {
-          console.log(res);
-
-          if(method === 'Update') {
-            setEvent( prevState => prevState.map(eventEl => eventEl.id === res.id ? res : eventEl))
-          } else {
-            setEvents(prevState => [...prevState, res]);
-          }  
-          cancelFormHandler()
-        })
+      body: JSON.stringify(eventForUpdate)
+    })
+      .then(res => res.json())
+      .then(res => {
+        if(httpMethod === 'PATCH') {
+          setEvents(prev => prev.map(eventEl => eventEl.id === res.id ? res : eventEl))
+        } else {
+          setEvents(prev => [...prev, res])
+        }
+        cancelFormHandler()
     })
   }
 
+  const eventFetchHandler = () => {
+    const fetchUrl = method === 'Update' ? `${url}/events/${event.id}` : `${url}/events`;
+    const httpMethod = method === 'Update' ? 'PATCH' : 'POST';
+    fetchHandler(fetchUrl, event, httpMethod);
+  }
+
+  const updateEventHandler = (droppedEvent) => {
+    const fetchUrl = `${url}/events/${droppedEvent.id}`;
+    console.log({droppedEvent})
+    fetchHandler(fetchUrl, droppedEvent, 'PATCH');
+  }
+
+  const deleteEventHandler = () => {
+    const fetchUrl = `${url}/events/${event.id}`;
+    const httpMethod = 'DELETE';
+
+    fetch(fetchUrl, {
+      method: httpMethod,
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+      .then(res => res.json())
+      .then(res => {
+        setEvents(prev => prev.filter(eventEl => eventEl.id !== event.id))
+        cancelFormHandler()
+      })
+  }
   return (
     <>
-    {
-      isShowForm ? (
-        <div className='formWrapper' onClick={() => cancelFormHandler()}>
-          <div className='formContainer' onClick={(e) => e.stopPropagation()}>
-            <input 
-              className='eventTitle' 
-              type='text' 
-              placeholder='Title' 
-              value={event ? event.title : ''}
-              onChange={(e) => changeEventHandler(e.target.value, 'title')} 
-            />
-            <input 
-              className='eventDescription' 
-              type='text' 
-              placeholder='Description' 
-              value={event ? event.description : ''}
-              onChange={(e) => changeEventHandler(e.target.value, 'description')}  
-            />
-            <div className='buttonsEventWrapper'>
-              <button onClick={() => cancelFormHandler()}>Cancel</button>
-              <button onClick={() => eventFetchHandler()}>{method}</button>
+      {
+        isShowForm ? (
+          <div className='formWrapper' onClick={() => cancelFormHandler()}>
+            <div className='formContainer' onClick={(e) => e.stopPropagation()}>
+              <input 
+                className='eventTitle' 
+                type='text' 
+                placeholder='Title' 
+                value={event ? event.title : ''}
+                onChange={e => changeEventHandler(e.target.value, 'title')} 
+              />
+              <input 
+                className='eventDescription' 
+                type='text' 
+                placeholder='Description' 
+                value={event ? event.description : ''}
+                onChange={e => changeEventHandler(e.target.value, 'description')}  
+              />
+              <div className='buttonsEventWrapper'>
+                <button onClick={() => cancelFormHandler()}>Cancel</button>
+                <button onClick={() => eventFetchHandler()}>{method}</button>
+                {
+                  method === 'Update' ? (
+                    <button onClick={() => deleteEventHandler()}>Delete</button>
+                  ) : null
+                }
+              </div>
             </div>
           </div>
-        </div>
-      ) : null
-    }
+        ) : null
+      }
       <div className='calendarWrapper'>
         {[...Array(7)].map((_, i) => (
           <div className='weekWrapper'> 
@@ -129,25 +157,29 @@ export default function Calendar (props) {
               >
                 <div className='showDayWrapper'>
                   <div className='rowInCell'>
-                    <div className={ isCurrentDay(dayItem) ? 'currentDay' : '' } onDoubleClick={() => openFormHandler('Add')}>
+                    <div className={ isCurrentDay(dayItem) ? 'currentDay' : '' } onDoubleClick={() => openModalFormHandler('Create', null, dayItem)}>
                       {dayItem.format('D')}
                     </div>
                   </div>
                 </div>
-
-                <ul className='evenListWrapper'>
-                  {
-                  events
-                  .filter(ev => ev.date >= dayItem.format('X') && ev.date <= dayItem.clone().endOf('day').format('X'))
-                  .map(ev => 
-                      <div type='button' className='eventWrapper' onDoubleClick={() => openFormHandler('Change', event)}>
-                        <li key={ev.id}>
-                          {ev.title}
-                        </li>
-                      </div>
-                    )
-                }
-                </ul>
+                {events && events.length > 0 && (
+                  <ul className='eventListWrapper'>
+                    {
+                    events
+                      .filter(ev => ev.date >= dayItem.format('X') && ev.date <= dayItem.clone().endOf('day').format('X'))
+                      .map(ev => 
+                        <div type='button' className='eventWrapper' onDoubleClick={() => openModalFormHandler('Update', ev, dayItem)}>
+                          <li key={ev.id} >
+                              {ev.title}
+                            </li>
+                            <li>
+                              {ev.description}
+                            </li>
+                        </div>
+                        )
+                    }
+                  </ul>
+                )}
             </div>
           ))
         }
