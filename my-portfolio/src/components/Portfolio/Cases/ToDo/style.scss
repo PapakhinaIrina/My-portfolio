@@ -114,8 +114,10 @@ body {
 .eventListWrapper {
   list-style-position: inside;
   margin: unset;
-  overflow: hidden;
+  overflow: scroll;
   padding-left: 8px;
+  position: relative;
+  max-height: calc(100px - 33px);
   width: 90%;
 }
 
