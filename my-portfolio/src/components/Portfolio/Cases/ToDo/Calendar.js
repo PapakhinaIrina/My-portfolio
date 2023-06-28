@@ -86,12 +86,6 @@ export default function Calendar (props) {
     fetchHandler(fetchUrl, event, httpMethod);
   }
 
-  const updateEventHandler = (droppedEvent) => {
-    const fetchUrl = `${url}/events/${droppedEvent.id}`;
-    console.log({droppedEvent})
-    fetchHandler(fetchUrl, droppedEvent, 'PATCH');
-  }
-
   const deleteEventHandler = () => {
     const fetchUrl = `${url}/events/${event.id}`;
     const httpMethod = 'DELETE';

@@ -19,7 +19,10 @@ export default function ToDo () {
     fetch(`${url}/events?date_gte=${isStartCurrentDay}&date_lte=${isEndCurrentDay}`)
     .then(res => res.json())
     .then(res => setCurrentDayEvents(res))
-  }, [isStartCurrentDay, isEndCurrentDay, setCurrentDayEvents, setEvents]);
+// eslint-disable-next-line react-hooks/exhaustive-deps
+}, [JSON.stringify(events)]);
+
+console.log(JSON.stringify(currentDayEvents));
 
   const prevHandler = () => setToday(prev => prev.clone().subtract(1, 'month'));
   const todayHandler = () => setToday(moment());
