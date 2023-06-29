@@ -1,4 +1,5 @@
-import './style.scss'
+import React from 'react'
+import './index.scss'
 
 export function Animation () {
 
@@ -25,7 +26,3 @@ export function Animation () {
   </div>
   )
 }
-
-
-
-
