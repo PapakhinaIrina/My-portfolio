@@ -21,7 +21,7 @@ const useDebounce = (value, delay) => {
 
 function UserName ({isValid, isLoading, handleChange}) {
   return (
-    <>
+    <div>
       <div className="userName">
         <input
           onChange={handleChange}
@@ -36,7 +36,7 @@ function UserName ({isValid, isLoading, handleChange}) {
             Пользователь с таким именем уже зарегистрирован       
           </div>
       </div>
-    </>
+    </div>
   )
 }
 
@@ -60,7 +60,7 @@ export default function SignUp () {
 
 
   return (
-    <>
+    <div>
       <Link to="/portfolio" className="iconArrow">
         <Icon icon="ic:outline-arrow-circle-left"width={46} />
       </Link>
@@ -85,6 +85,6 @@ export default function SignUp () {
           </button>
         </form>
       </div>
-    </>
+    </div>
   )
 };

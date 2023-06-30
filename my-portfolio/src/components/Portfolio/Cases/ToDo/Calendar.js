@@ -103,7 +103,7 @@ export default function Calendar (props) {
       })
   }
   return (
-    <>
+    <div>
       {
         isShowForm ? (
           <div className='formWrapper' onClick={() => cancelFormHandler()}>
@@ -178,6 +178,6 @@ export default function Calendar (props) {
           ))
         }
       </div>
-    </>
+    </div>
   )
 } 

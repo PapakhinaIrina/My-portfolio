@@ -1,8 +1,7 @@
 import React from "react";
 import { Icon } from '@iconify/react';
-import {  Animation } from './Animation';
+import {  Animation } from "../../../widgets/ui/animation/Animation";
 import { Link } from "react-router-dom";
-import './style.scss'
 
 
 export default function Contact () {

@@ -9,7 +9,7 @@ export default function Widget () {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <>
+    <div>
       <div>
         <Link to="/portfolio" className="iconArrow">
             <Icon icon="ic:outline-arrow-circle-left"width={46} />
@@ -60,6 +60,6 @@ export default function Widget () {
           </div>
         </div>
       </article>
-    </>
+    </div>
   )
 }

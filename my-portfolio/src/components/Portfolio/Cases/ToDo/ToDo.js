@@ -32,7 +32,7 @@ console.log(JSON.stringify(currentDayEvents));
   const selectedYearYear =  moment().startOf('year').format('YYYY');
 
   return (
-  <>
+  <div>
     <div className="wrapperToDo">
       <div className="containerToDo">
         <div className="headerToDo">
@@ -76,6 +76,6 @@ console.log(JSON.stringify(currentDayEvents));
 
       </div>
     </div>
-  </>
+  </div>
   )
 }

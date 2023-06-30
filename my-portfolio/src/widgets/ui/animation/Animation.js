@@ -1,6 +1,6 @@
-import './style.scss'
+import "./index.scss"
 
-export function Animation () {
+export const Animation = () => {
 
   return(
     <div aria-busy="true" aria-label="Loading" role="progressbar" className="box">
@@ -25,7 +25,3 @@ export function Animation () {
   </div>
   )
 }
-
-
-
-
