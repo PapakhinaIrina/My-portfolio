@@ -21,6 +21,8 @@ const Contact = () => {
         <Typography
           align="center"
           variant="h4"
+          fontFamily="Dosis"
+          fontWeight="bold"
         > 
           { textConnection }
         </Typography>
@@ -69,7 +71,10 @@ const Contact = () => {
           <br/>
         <Typography
           align="center"
-          variant="h5">
+          fontFamily="Dosis"
+          fontWeight="bold"
+          variant="h5"
+          >
           { socialNetwork }
         </Typography>
 

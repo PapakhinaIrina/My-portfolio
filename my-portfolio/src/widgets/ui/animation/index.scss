@@ -15,42 +15,6 @@ li{
   position: relative;
 }
 
-.wrapperConnectPage{
-  display: flex;
-  justify-content: center;
-  margin-top: 150px;
-  font-family: 'Dosis', sans-serif;
-  color: #777777;
-  @media screen and (min-width: 600px) {
-    margin-top: 0;
-    }
-}
-
-.home{
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  cursor: pointer;
-  svg{
-    g {
-      stroke: #777777;
-    }
-    circle {
-      stroke: #777777;
-      fill: #777777;
-    }
-  }
-}
-.social{
-  display: flex;
-}
-
-.connect{
-  font-family: 'Dosis', sans-serif;
-
-}
-
-
 body {
   background: #ede9de; 
 }
