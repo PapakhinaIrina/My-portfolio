@@ -45,37 +45,6 @@ li{
   display: flex;
 }
 
-.iconInstagram {
-  svg{
-    g {
-      stroke: #777777;
-    }
-    circle {
-      stroke: #777777;
-      fill: #777777;
-    }
-  }
-}
-
-.iconLinkedin {
-  svg{
-    g{
-      stroke: #777777;
-    }
-    circle {
-      fill: #777777;
-    }
-  }
-}
-
-.iconGithub{
-  svg{
-    g{
-      stroke: #777777;
-    }
-  }
-}
-
 .connect{
   font-family: 'Dosis', sans-serif;
 
@@ -84,14 +53,6 @@ li{
 
 body {
   background: #ede9de; 
-}
-
-.box {
-  left: 48%;
-  margin: auto -50px;
-  position: absolute;
-  align-items: center;
-  top: 80%;
 }
 
 .swing div {
