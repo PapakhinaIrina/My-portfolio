@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 import { Icon } from '@iconify/react';
-import {  Animation } from '../../shared/ui';
+import {  Animation } from './Animation';
 import { Link } from "react-router-dom";
 import './style.scss'
 

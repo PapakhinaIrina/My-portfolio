@@ -1,0 +1,147 @@
+* {
+  box-sizing: border-box;
+}
+
+html,body,
+.wrapper {
+  height: 100%;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  margin: 0;
+  background-color: blanchedalmond;
+  font-family: 'Dosis', sans-serif;
+  color: rgb(73, 51, 14);
+}
+
+button{
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.containerSignUp {
+  width: 400px;
+  padding: 40px 30px 32px;
+  border-radius: 8px;
+  background-color: rgb(255, 184, 61);
+  text-align: center;
+  transition: 0.4s;
+}
+
+.containerSignUp > h2 {
+  font-size: 36px;
+  font-weight: 600;
+  margin: 0 0  30px;
+}
+
+.containerSignUp img {
+  width: 190px;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.form {
+  width: 100%;
+  margin: 0;
+  display: grid;
+}
+
+.form input.control::placeholder {
+  color: rgba(95, 65, 32, 0.376);
+}
+
+.control {
+  outline: none;
+  width: 100%;
+  height: 56px;
+  padding: 0 16px;
+  border: 0;
+  background: RGB(255 255 255 / 30%);
+  color: inherit;
+  border-radius: 6px;
+  margin: 8px 0;
+  font-family: 'Dosis', sans-serif;
+  text-align: left;
+  font-size: 18px;
+  transition: 0.4s;
+}
+
+button.control {
+  cursor: pointer;
+  width: 100%;
+  height: 56px;
+  padding: 0 16px;
+  background: #523815;
+  color: #f7f7f7;
+  border: 0;
+  font-family: 'Dosis', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 2px;
+  transition: all 0.375s;
+}
+
+button.control:disabled {
+  opacity: 0.25;
+}
+
+.username {
+  position: relative;
+}
+
+@keyframes spin {
+  100% {
+    rotate: 1turn;
+  }
+}
+
+.spinner {
+  translate: 0 -50%;
+  position: absolute;
+  margin-top: -34px;
+  margin-left: 290px;
+  width: 30px;
+  height: 30px;
+  visibility: hidden;
+  opacity: 0;
+  border-radius: 50%;
+  border: 3px solid rgba(61, 48, 23, 0.944);
+  border-top-color: rgba(54, 43, 39, 0.221);
+  animation: spin 0.6s infinite linear;
+  transition: 0.3s;
+}
+
+.spinner.loading {
+  visibility: visible;
+  opacity: 1;
+}
+
+.validation {
+  font-size: smaller;
+  display: flex;
+  align-items: center;
+  height: 0;
+  overflow: hidden;
+  color: #b13950;
+  transition: 0.3s;
+}
+
+.validation.invalid {
+  height: 30px;
+}
+
+.iconArrow {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  cursor: pointer;
+  svg{
+      path{
+        fill: #777777;
+      }
+  }
+}

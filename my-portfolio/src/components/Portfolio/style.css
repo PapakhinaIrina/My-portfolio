@@ -1,0 +1,16 @@
+.wrapperPortfolio{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.containerPortfolio{
+  justify-content: center;
+  align-items: center;
+
+}
+
+.cases{
+  display: flex;
+  padding: 16px;
+}
