@@ -11,7 +11,7 @@ export default function Portfolio () {
     <div className="wrapperPortfolio">
       <div className="containerPortfolio">
         
-        <Link to="/home" className="home">
+        <Link to="/" className="home">
             <Icon icon="line-md:home-md"width={46} />
         </Link>
 
@@ -24,7 +24,7 @@ export default function Portfolio () {
 
             <div>
               <Link to="/portfolio/widget"className="portfolio">
-                 WIDGET
+                WIDGET
               </Link>
             </div>
 

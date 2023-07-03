@@ -17,7 +17,7 @@ export const ButtonHome = () => {
         top: doubleSpacingMargin,
         left: doubleSpacingMargin,
       }}
-      href="/home"
+      href="/"
       >
         <Icon icon="line-md:home-md"width={46} color='#777777' cursor="pointer"/>
       </Link>
