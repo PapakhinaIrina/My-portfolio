@@ -1,19 +1,20 @@
-import { Container, Box, Typography } from "@mui/material"
-import { headerHeight } from '../../shared/utils/constants/componentSize'
-import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
-
+import { Container, Typography } from "@mui/material"
+import { headerHeight } from "../../shared/utils/constants/componentSize"
+import { doubleSpacingMargin } from "../../shared/utils/constants/margin"
+import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown"
 
 const Landing = () => {
   return (
   <Container>
     <Container
       sx={{
-        height: `calc(100vh - ${headerHeight})`,
+        alignItems: 'center',
         display: 'grid',
         flexDirection: 'column',
-        alignItems: 'center',
+        gridTemplateRows: "1fr 100px",
+        height: `calc(100vh - ${headerHeight})`,
         justifyContent: 'center',
-        gridTemplateRows: "1fr 100px"
+        paddingTop: doubleSpacingMargin
       }}>
         <Typography 
           variant="h3"
@@ -23,18 +24,10 @@ const Landing = () => {
           }}>
             It's a landing page
         </Typography>
-      {/* <Box>
+          <KeyboardDoubleArrowDownIcon 
           sx={{
-            width: 50,
-            height: 50,
-            borderRadius: '50%',
-            backgroundColor: 'brown',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }} */}
-          <KeyboardDoubleArrowDownIcon/>
-      {/* </Box> */}
+            fontSize: '50px',
+          }}/>
     </Container>
   </Container>
   )
