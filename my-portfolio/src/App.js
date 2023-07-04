@@ -1,15 +1,17 @@
 import React from "react"
-import AppRouter from "./AppRouter"
 import { Layout } from "../src/app/Layout"
+import { RouterProvider } from "./app/providers"
+import { Router } from "./pages/index" 
 
 function App() {
   return (
     <>
-      <Layout>
-        <AppRouter />
-      </Layout>
+      <RouterProvider>
+        <Layout>
+          <Router />
+        </Layout>
+      </RouterProvider>
     </>
   );
 }
-
 export default App;

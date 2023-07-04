@@ -1,7 +1,5 @@
-// import { Children } from "react"
+import React from "react"
 import { Header } from "../widgets/Header/Header"
-import React from "react";
-
 export const Layout = ({children}) => {
   return (
     <>
