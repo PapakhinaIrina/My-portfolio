@@ -1,0 +1,44 @@
+* {
+  box-sizing: border-box;
+}
+
+@keyframes spin {
+  100% {
+    rotate: 1turn;
+  }
+}
+
+.spinner {
+  translate: 0 -50%;
+  position: absolute;
+  margin-top: -34px;
+  margin-left: 290px;
+  width: 30px;
+  height: 30px;
+  visibility: hidden;
+  opacity: 0;
+  border-radius: 50%;
+  border: 3px solid rgba(61, 48, 23, 0.944);
+  border-top-color: rgba(54, 43, 39, 0.221);
+  animation: spin 0.6s infinite linear;
+  transition: 0.3s;
+}
+
+.spinner.loading {
+  visibility: visible;
+  opacity: 1;
+}
+
+.validation {
+  font-size: smaller;
+  display: flex;
+  align-items: center;
+  height: 0;
+  overflow: hidden;
+  color: #b13950;
+  transition: 0.3s;
+}
+
+.validation.invalid {
+  height: 30px;
+}

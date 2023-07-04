@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom"
 import Contact from "../pages/Contact/Contact"
 import Landing from "../pages/Landing/Landing"
 import Portfolio from "../pages/Portfolio/Portfolio"
-import SignUp from "../components/Portfolio/Cases/SignUp/SignUp"
+import SignUp from "./SignUp/SignUp"
 import Widget from "../components/Portfolio/Cases/Widget/Widget"
 import ToDo from "../components/Portfolio/Cases/ToDo/ToDo"
 
