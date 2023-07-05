@@ -6,7 +6,7 @@ import { CONTACTS } from "../../shared/utils/constants"
 import { ButtonHome } from "../../widgets/buttonHome/ButtonHome"
 import { headerHeight } from "../../shared/utils/constants/componentSize"
 import { doubleSpacingMargin } from "../../shared/utils/constants/margin"
-
+import { margin } from "../../shared/utils/constants/margin"
 
 const textConnection = "Связь";
 const socialNetwork = "Социальные сети";
@@ -16,29 +16,50 @@ const Contact = () => {
     <Container
       sx={{
         height: `calc(100vh - ${headerHeight})`,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        justifyItems: "center",
       }}>
-        <ButtonHome />
-        <Typography
-          align="center"
-          variant="h4"
-          fontFamily="Dosis"
-          fontWeight="bold"
-        > 
-          { textConnection }
-        </Typography>
+      <Container
+        sx={{
+          marginTop: "100px",
+          width: "280px"
+        }}>
 
-        <Container
+        <Box          
           sx={{
-            alignItems: "start",
+            position: "absolute",
+            top: `calc(${headerHeight}px + ${margin})`,
+            left: margin,
+          }}>
+        <ButtonHome />
+        </Box>
+
+        <Box>
+        <Typography
+            align="center"
+            variant="h4"
+            fontFamily="Dosis"
+            fontWeight="bold"
+          > 
+            { textConnection }
+          </Typography>
+        </Box>
+
+        <Box
+          sx={{
             display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
             flexDirection: "column",
-            justifyContent: "start",
           }}>
           <Box
             sx={{
-              alignItems: "center",
               display: "flex",
               flexDirection: "row",
+              alignItems: "center",
               justifyContent: "center",
             }}>
             <Icon icon="line-md:email" width={46} color="#777777"/>
@@ -66,17 +87,20 @@ const Contact = () => {
             <Icon icon="ion:phone-portrait-outline" width={46} color="#777777"/>
               { CONTACTS.phoneNumber }
           </Box>
-        </Container>
+        </Box>
+
           <br/>
           <br/>
-        <Typography
-          align="center"
-          fontFamily="Dosis"
-          fontWeight="bold"
-          variant="h5"
-          >
-          { socialNetwork }
-        </Typography>
+        <Box>
+          <Typography
+            align="center"
+            fontFamily="Dosis"
+            fontWeight="bold"
+            variant="h5"
+            >
+            { socialNetwork }
+          </Typography>
+        </Box>
 
         <br/>
         <Box
@@ -113,6 +137,7 @@ const Contact = () => {
         }}>
           <Animation />
         </Box>
+        </Container>
     </Container>
   )
 } 
