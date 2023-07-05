@@ -3,7 +3,7 @@ import Contact from "../pages/Contact/Contact"
 import Landing from "../pages/Landing/Landing"
 import Portfolio from "../pages/Portfolio/Portfolio"
 import SignUp from "./SignUp/SignUp"
-import Widget from "../components/Portfolio/Cases/Widget/Widget"
+import Widget from "../pages/Widget/Widget"
 import ToDo from "../components/Portfolio/Cases/ToDo/ToDo"
 
 export const Router = () => {
