@@ -51,7 +51,6 @@ const Contact = () => {
         <Box
           sx={{
             display: "flex",
-            justifyContent: "center",
             alignItems: "center",
             flexDirection: "column",
           }}>
@@ -60,7 +59,6 @@ const Contact = () => {
               display: "flex",
               flexDirection: "row",
               alignItems: "center",
-              justifyContent: "center",
             }}>
             <Icon icon="line-md:email" width={46} color="#777777"/>
               { CONTACTS.email }
@@ -71,7 +69,6 @@ const Contact = () => {
               alignItems: "center",
               display: "flex",
               flexDirection: "row",
-              justifyContent: "center",
             }}>
             <Icon icon="line-md:telegram" width={46} color="#777777"/>
             { CONTACTS.telegram }
@@ -82,7 +79,6 @@ const Contact = () => {
               alignItems: "center",
               display: "flex",
               flexDirection: "row",
-              justifyContent: "center",
             }}>
             <Icon icon="ion:phone-portrait-outline" width={46} color="#777777"/>
               { CONTACTS.phoneNumber }
