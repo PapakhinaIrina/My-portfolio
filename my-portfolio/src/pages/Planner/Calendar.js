@@ -1,4 +1,6 @@
-import React, {useEffect, useState}from 'react';
+import React, {useEffect, useState } from "react"
+import { Container, Typography, Box } from "@mui/material"
+import { headerHeight } from "../../shared/utils/constants/componentSize"
 import moment from 'moment';
 import './style.scss';
 
@@ -103,7 +105,18 @@ export default function Calendar (props) {
       })
   }
   return (
-    <div>
+    <Container
+      sx={{
+        height:`calc(100vh - ${headerHeight})`,
+        border: "1px solid rgba(105, 112, 112, 0.409)"
+
+      }}>
+      <Container
+        sx={{
+
+        }}>
+
+        
       {
         isShowForm ? (
           <div className='formWrapper' onClick={() => cancelFormHandler()}>
@@ -178,6 +191,7 @@ export default function Calendar (props) {
           ))
         }
       </div>
-    </div>
+      </Container>
+    </Container>
   )
 } 

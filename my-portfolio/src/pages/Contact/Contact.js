@@ -1,12 +1,11 @@
 import React from "react"
-import { Container, Typography, Box } from '@mui/material'
-import { Icon } from '@iconify/react'
-import {  Animation } from "../../widgets/ui/animation/Animation"
+import { Container, Typography, Box } from "@mui/material"
+import { Icon } from "@iconify/react"
+import { Animation } from "../../widgets/ui/animation/Animation"
 import { CONTACTS } from "../../shared/utils/constants"
 import { ButtonHome } from "../../widgets/buttonHome/ButtonHome"
 import { headerHeight } from "../../shared/utils/constants/componentSize"
-import { doubleSpacingMargin } from "../../shared/utils/constants/margin"
-import { margin } from "../../shared/utils/constants/margin"
+import { spacing } from "../../shared/utils/constants/spacing"
 
 const textConnection = "Связь";
 const socialNetwork = "Социальные сети";
@@ -31,8 +30,8 @@ const Contact = () => {
         <Box          
           sx={{
             position: "absolute",
-            top: `calc(${headerHeight}px + ${margin})`,
-            left: margin,
+            top: `calc(${headerHeight}px + ${spacing[2]})`,
+            left: spacing[2],
           }}>
         <ButtonHome />
         </Box>
@@ -129,7 +128,7 @@ const Contact = () => {
           display: "flex",
           flexDirection: "row",
           justifyContent: "center",
-          marginTop: doubleSpacingMargin,
+          marginTop: spacing[3],
         }}>
           <Animation />
         </Box>

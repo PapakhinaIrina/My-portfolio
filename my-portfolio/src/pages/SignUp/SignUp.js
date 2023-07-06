@@ -5,7 +5,7 @@ import { Container, Box, Typography, FormControl, Button} from "@mui/material"
 import { Input } from "@mui/joy"
 import image from "./image.svg"
 import { headerHeight } from "../../shared/utils/constants/componentSize"
-import { doubleSpacingMargin } from "../../shared/utils/constants/margin"
+import { spacing } from "../../shared/utils/constants/spacing"
 
 import "./style.scss"
 
@@ -95,7 +95,7 @@ const SignUp = () => {
         <Box
           sx={{
             position: "absolute",
-            top: `calc(${headerHeight}px + ${doubleSpacingMargin})`,
+            top: `calc(${headerHeight}px + ${spacing[3]})`,
             left: "0",
             cursor: "pointer"
           }}>

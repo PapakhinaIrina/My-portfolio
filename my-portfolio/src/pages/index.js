@@ -4,7 +4,7 @@ import Landing from "../pages/Landing/Landing"
 import Portfolio from "../pages/Portfolio/Portfolio"
 import SignUp from "./SignUp/SignUp"
 import Widget from "../pages/Widget/Widget"
-import ToDo from "../components/Portfolio/Cases/ToDo/ToDo"
+import Planner from "../pages/Planner/Planner"
 
 export const Router = () => {
   return (
@@ -14,7 +14,7 @@ export const Router = () => {
       <Route path="/portfolio" element={<Portfolio />} />  
       <Route path="/portfolio/signup" element={<SignUp />}/>
       <Route path="/portfolio/widget" element={<Widget />}/>
-      <Route path="/portfolio/todo" element={<ToDo />}/>
+      <Route path="/portfolio/planner" element={<Planner />}/>
     </Routes>
   )
 }

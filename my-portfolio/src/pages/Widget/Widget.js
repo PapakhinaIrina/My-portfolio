@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import { Container, Box, Paper, Button } from "@mui/material"
 import { Icon } from "@iconify/react"
 import { headerHeight } from "../../shared/utils/constants/componentSize"
-import { margin, doubleSpacingMargin } from "../../shared/utils/constants/margin"
+import { spacing } from "../../shared/utils/constants/spacing"
 
 
 import './style.css';
@@ -32,7 +32,7 @@ const Widget = () => {
         <Box
           sx={{
             position: "absolute",
-            top: `calc(${headerHeight}px + ${doubleSpacingMargin})`,
+            top: `calc(${headerHeight}px + ${spacing[3]})`,
             left: "0",
             cursor: "pointer"
           }}>
@@ -54,7 +54,7 @@ const Widget = () => {
           flexDirection: "row",
           justifyContent: "space-around",
           borderBottom: "1px solid rgb(80, 53, 25)",
-          padding: margin,
+          padding: spacing[2],
           paddingBottom: 0
         }}>
           <Box className={activeIndex === 1 && "underline"}>

@@ -3,9 +3,9 @@ import { Container, Box } from "@mui/material"
 import { Link } from "react-router-dom"
 import { Icon } from "@iconify/react"
 import { headerHeight } from "../../shared/utils/constants/componentSize"
-import { margin } from "../../shared/utils/constants/margin"
+import { spacing } from "../../shared/utils/constants/spacing"
 
-export default function Portfolio () {
+const Portfolio = () => {
   return (
     <Container
       sx={{
@@ -25,8 +25,8 @@ export default function Portfolio () {
         <Box
           sx={{
             position: "absolute",
-            top: `calc(${headerHeight}px + ${margin})`,
-            left: margin,
+            top: `calc(${headerHeight}px + ${spacing[2]})`,
+            left: spacing[2],
           }}>
           <Link to="/" >
             <Icon icon="line-md:home-md"width={36} />
@@ -36,20 +36,20 @@ export default function Portfolio () {
         <Box
           sx={{
           }}>
-          <Link to="/portfolio/signup"className="portfolio">
+          <Link to="/portfolio/signup">
             SIGN UP
           </Link>
         </Box>
 
         <Box>
-          <Link to="/portfolio/widget"className="portfolio">
+          <Link to="/portfolio/widget">
             WIDGET
           </Link>
         </Box>
 
         <Box>
-          <Link to="/portfolio/todo"className="portfolio">
-            TODO
+          <Link to="/portfolio/planner">
+            PLANNER
           </Link>
         </Box>
 
@@ -57,6 +57,5 @@ export default function Portfolio () {
     </Container>
   )
 }
-
-
+export default Portfolio;
 

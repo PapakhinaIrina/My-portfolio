@@ -1,12 +1,16 @@
-import React, {useState, useEffect} from "react";
-import Calendar from './Calendar';
-import { Icon } from '@iconify/react';
-import moment from "moment";
+import React, {useState, useEffect} from "react"
+import { Container, Typography, Box } from "@mui/material"
+import Calendar from "./Calendar"
+import { Icon } from "@iconify/react"
+import { headerHeight } from "../../shared/utils/constants/componentSize"
+import { spacing } from "../../shared/utils/constants/spacing"
+import moment from "moment"
 
 import './style.scss'
 
 const url = 'http://localhost:3001';
-export default function ToDo () {
+
+const Planner = () => {
 
   const [today, setToday] = useState(moment());
   const [events, setEvents] = useState([]);
@@ -22,8 +26,6 @@ export default function ToDo () {
 // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [JSON.stringify(events)]);
 
-console.log(JSON.stringify(currentDayEvents));
-
   const prevHandler = () => setToday(prev => prev.clone().subtract(1, 'month'));
   const todayHandler = () => setToday(moment());
   const nextHandler = () => setToday(prev => prev.clone().add(1, 'month'));
@@ -32,7 +34,11 @@ console.log(JSON.stringify(currentDayEvents));
   const selectedYearYear =  moment().startOf('year').format('YYYY');
 
   return (
-  <div>
+  <Container
+    sx={{
+      height:`calc(100vh - ${headerHeight})`,
+      paddingTop: spacing[4],
+    }}>
     <div className="wrapperToDo">
       <div className="containerToDo">
         <div className="headerToDo">
@@ -76,6 +82,7 @@ console.log(JSON.stringify(currentDayEvents));
 
       </div>
     </div>
-  </div>
+  </Container>
   )
 }
+export default Planner;

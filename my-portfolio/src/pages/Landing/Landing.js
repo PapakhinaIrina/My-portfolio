@@ -1,6 +1,6 @@
 import { Container, Typography } from "@mui/material"
 import { headerHeight } from "../../shared/utils/constants/componentSize"
-import { doubleSpacingMargin } from "../../shared/utils/constants/margin"
+import { spacing } from "../../shared/utils/constants/spacing"
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown"
 
 const Landing = () => {
@@ -14,7 +14,7 @@ const Landing = () => {
         gridTemplateRows: "1fr 100px",
         height: `calc(100vh - ${headerHeight})`,
         justifyContent: 'center',
-        paddingTop: doubleSpacingMargin
+        paddingTop: spacing[3]
       }}>
         <Typography 
           variant="h3"

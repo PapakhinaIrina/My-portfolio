@@ -1,7 +1,7 @@
 import { Icon } from "@iconify/react"
 import { Container, Link } from "@mui/material"
 import { headerHeight } from "../../shared/utils/constants/componentSize"
-import { doubleSpacingMargin } from "../../shared/utils/constants/margin"
+import { spacing } from "../../shared/utils/constants/spacing"
 
 
 export const ButtonHome = () => {
@@ -14,8 +14,8 @@ export const ButtonHome = () => {
       <Link
       sx={{
         position: "absolute",
-        top: doubleSpacingMargin,
-        left: doubleSpacingMargin,
+        top: spacing[3],
+        left: spacing[3],
       }}
       href="/"
       >
