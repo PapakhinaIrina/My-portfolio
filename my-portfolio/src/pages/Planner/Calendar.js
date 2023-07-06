@@ -1,11 +1,11 @@
 import React, {useEffect, useState } from "react"
-import { Container, Typography, Box } from "@mui/material"
+import { Container } from "@mui/material"
 import { headerHeight } from "../../shared/utils/constants/componentSize"
 import moment from 'moment';
 import './style.scss';
 
 const url = 'http://localhost:3001';
-const totalDays = 42;
+const totalDays = 35;
 const defaultEvent = {
   title: '',
   description: '',
@@ -106,17 +106,13 @@ export default function Calendar (props) {
   }
   return (
     <Container
+      disableGutters
       sx={{
         height:`calc(100vh - ${headerHeight})`,
-        border: "1px solid rgba(105, 112, 112, 0.409)"
-
+        border: "1px solid rgba(105, 112, 112, 0.409)",
       }}>
       <Container
-        sx={{
-
-        }}>
-
-        
+        disableGutters>
       {
         isShowForm ? (
           <div className='formWrapper' onClick={() => cancelFormHandler()}>

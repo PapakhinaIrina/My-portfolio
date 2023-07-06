@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from "react"
-import { Container, Typography, Box } from "@mui/material"
+import { Container, Button, Box } from "@mui/material"
 import Calendar from "./Calendar"
 import { Icon } from "@iconify/react"
-import { headerHeight } from "../../shared/utils/constants/componentSize"
 import { spacing } from "../../shared/utils/constants/spacing"
 import moment from "moment"
 
@@ -34,55 +33,127 @@ const Planner = () => {
   const selectedYearYear =  moment().startOf('year').format('YYYY');
 
   return (
-  <Container
-    sx={{
-      height:`calc(100vh - ${headerHeight})`,
-      paddingTop: spacing[4],
-    }}>
-    <div className="wrapperToDo">
-      <div className="containerToDo">
-        <div className="headerToDo">
-          {[selectedMonthMonth , " ",selectedYearYear]}
-          
-          <div className="buttonHeader">
-            <button onClick={() => prevHandler(today)}><Icon icon="ooui:next-rtl" width={15}/></button>
-            <div type="button" onClick={() => todayHandler(today)}>Today</div>
-            <button onClick={() => nextHandler(today)}><Icon icon="ooui:next-ltr" width={15}/></button>
-          </div>
+    <Container
+      disableGutters
+      sx={{
+        paddingTop: spacing[4],
+        width: "1060px",
+      }}>
+      <Container
+        sx={{
+          display: "flex",
+          position: "relative",
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: "#F5F5F5",
+          borderRadius: "8px",
+          border: "1px solid rgba(105, 112, 112, 0.409)",
+          boxShadow: "rgba(133, 134, 167, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px" 
+        }}>
+        <Box 
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+          }}>
+          <Box 
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              fontSize: "30px",
+              fontFamily: "Dancing Script",
+            }}>
+            {[selectedMonthMonth , " ",selectedYearYear]}
+            
+            <Box 
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                fontSize: "20px",
+                color: "rgb(73, 79, 79)"
+              }}>
 
-        </div>
+              <Button 
+                onClick={() => prevHandler(today)}>
+                  <Icon icon="ooui:next-rtl" width={15} color="rgba(73, 79, 79, 0.473)"/>
+              </Button>
+              <Box 
+                onClick={() => todayHandler(today)}>
+                Today
+              </Box>
+              <Button 
+                onClick={() => nextHandler(today)}>
+                <Icon icon="ooui:next-ltr" width={15} color="rgba(73, 79, 79, 0.473)"/>
+              </Button>
 
-        <div className="calendar">
-          <Calendar 
-            events={events} 
-            setEvents={setEvents} 
-            today={today}/>
-        </div>
+            </Box>
+          </Box>
 
-        <div className="tasks">Tasks for today :
-          <div className="tasksList">
-            {currentDayEvents.length > 0 ? currentDayEvents.map(task => 
-            <div className="taskContainer">
-              <div className="taskItem" key={task.id}>
-                  <Icon icon="mdi:dot" width={28} />
-                  <div className="taskTitle">{task.title}</div>
-                  <div className="taskDescription">{task.description}</div>
-              </div>
-            </div>
-            ) : null
-            }
-          </div>
-        
-        </div>
-        <div className="buttonAdd">
-          <button>
-            <Icon icon="fluent:add-circle-28-regular"width={56} />
-          </button>
-        </div>
+          <Box>
+            <Calendar 
+              events={events} 
+              setEvents={setEvents} 
+              today={today}/>
+          </Box>
 
-      </div>
-    </div>
-  </Container>
+          <Box 
+            sx={{
+              marginLeft: "8px",
+              fontFamily: "Cormorant", 
+              fontWeight: "bold",
+              fontSize: "25px"
+            }}> Tasks for today :
+            <Box>
+              {currentDayEvents.length > 0 ? currentDayEvents.map(task => 
+              <Box>
+                <Box 
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    fontSize: "16px",
+                  }} 
+                  key={task.id}>
+                    <Icon icon="mdi:dot" width={28} />
+                    <Box 
+                    sx={{
+                      display: "flex",
+                      flexDirection: "row",
+                      alignItems: "center",
+                      fontWeight: "bold",
+                      justifyContent: "center",
+                      paddingRight: "8px"
+                    }}>
+                      {task.title}
+                    </Box>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        flexDirection: "row",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}>
+                      {task.description}
+                    </Box>
+                </Box>
+              </Box>
+              ) : null
+              }
+            </Box>
+          </Box>
+
+          <Box 
+            sx={{
+              display: "flex",
+              justifyContent: "flex-end"
+            }}>
+            <Button>
+              <Icon icon="fluent:add-circle-28-regular"width={56} color="rgba(105, 112, 112, 0.348)"/>
+            </Button>
+          </Box>
+
+        </Box>
+      </Container>
+    </Container>
   )
 }
 export default Planner;
