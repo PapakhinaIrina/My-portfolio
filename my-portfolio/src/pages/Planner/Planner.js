@@ -1,19 +1,28 @@
 import React, {useState, useEffect} from "react"
-import { Container, Button, Box } from "@mui/material"
 import Calendar from "./Calendar"
+import FormModalEvent from "../../widgets/formModalEvent/FormModalEvent"
+import { Container, Button, Box } from "@mui/material"
 import { Icon } from "@iconify/react"
 import { spacing } from "../../shared/utils/constants/spacing"
 import moment from "moment"
 
-import './style.scss'
-
 const url = 'http://localhost:3001';
+
+const defaultEvent = {
+  title: '',
+  description: '',
+  duration: 1,
+  date: moment().format('X')
+};
 
 const Planner = () => {
 
   const [today, setToday] = useState(moment());
   const [events, setEvents] = useState([]);
+  const [event, setEvent] = useState(null);
   const [currentDayEvents, setCurrentDayEvents] = useState([]);
+  const [isShowForm, setIsShowForm] = useState(false);
+  const [method, setMethod] = useState(null);
 
   const isStartCurrentDay = moment().clone().startOf('day').format('x');
   const isEndCurrentDay = moment().clone().endOf('day').format('x');
@@ -31,6 +40,71 @@ const Planner = () => {
 
   const selectedMonthMonth =  today.startOf('month').format('MMM');
   const selectedYearYear =  moment().startOf('year').format('YYYY');
+
+  const openFormHandler = (methodName, eventForUpdate, dayItem) => {
+    setEvent(eventForUpdate || {...defaultEvent, date: dayItem.format('X')});
+    setMethod(methodName);
+  };
+
+  const openModalFormHandler = (methodName, eventForUpdate, dayItem) => {
+    setIsShowForm(true);
+    openFormHandler(methodName, eventForUpdate, dayItem);
+  };
+
+  const cancelFormHandler = (e) => {
+    setIsShowForm(false);
+    setEvent(null);
+  };
+
+  const changeEventHandler = (text, field) => {
+    setEvent(prev => ({
+      ...prev,
+      [field]: text
+    }))
+  };
+
+  const fetchHandler = (fetchUrl, eventForUpdate, httpMethod) => {
+
+    fetch(fetchUrl, {
+      method: httpMethod,
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(eventForUpdate)
+    })
+      .then(res => res.json())
+      .then(res => {
+        if(httpMethod === 'PATCH') {
+          setEvents(prev => prev.map(eventEl => eventEl.id === res.id ? res : eventEl))
+        } else {
+          setEvents(prev => [...prev, res])
+        }
+        cancelFormHandler()
+    })
+  }
+
+  const eventFetchHandler = () => {
+    const fetchUrl = method === 'Update' ? `${url}/events/${event.id}` : `${url}/events`;
+    const httpMethod = method === 'Update' ? 'PATCH' : 'POST';
+    fetchHandler(fetchUrl, event, httpMethod);
+  }
+
+  const deleteEventHandler = () => {
+    const fetchUrl = `${url}/events/${event.id}`;
+    const httpMethod = 'DELETE';
+
+    fetch(fetchUrl, {
+      method: httpMethod,
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+      .then(res => res.json())
+      .then(res => {
+        setEvents(prev => prev.filter(eventEl => eventEl.id !== event.id))
+        cancelFormHandler()
+      })
+  }
 
   return (
     <Container
@@ -93,7 +167,10 @@ const Planner = () => {
             <Calendar 
               events={events} 
               setEvents={setEvents} 
-              today={today}/>
+              today={today}
+              setIsShowForm={setIsShowForm}
+              openModalFormHandler={openModalFormHandler}
+              />
           </Box>
 
           <Box 
@@ -104,7 +181,7 @@ const Planner = () => {
               fontSize: "25px"
             }}> Tasks for today :
             <Box>
-              {currentDayEvents.length > 0 ? currentDayEvents.map(task => 
+              {currentDayEvents.length > 0 ? currentDayEvents.map(ev => 
               <Box>
                 <Box 
                   sx={{
@@ -112,7 +189,7 @@ const Planner = () => {
                     flexDirection: "row",
                     fontSize: "16px",
                   }} 
-                  key={task.id}>
+                  key={ev.id}>
                     <Icon icon="mdi:dot" width={28} />
                     <Box 
                     sx={{
@@ -123,7 +200,7 @@ const Planner = () => {
                       justifyContent: "center",
                       paddingRight: "8px"
                     }}>
-                      {task.title}
+                      {ev.title}
                     </Box>
                     <Box
                       sx={{
@@ -132,7 +209,7 @@ const Planner = () => {
                         alignItems: "center",
                         justifyContent: "center",
                       }}>
-                      {task.description}
+                      {ev.description}
                     </Box>
                 </Box>
               </Box>
@@ -146,12 +223,21 @@ const Planner = () => {
               display: "flex",
               justifyContent: "flex-end"
             }}>
-            <Button>
+            <Button
+              onClick={() => openModalFormHandler('Create', currentDayEvents, today)}>
               <Icon icon="fluent:add-circle-28-regular"width={56} color="rgba(105, 112, 112, 0.348)"/>
             </Button>
           </Box>
+          <FormModalEvent 
+              isShowForm={isShowForm}
+              setIsShowForm={setIsShowForm}
+              cancelFormHandler={cancelFormHandler}
+              eventFetchHandler={eventFetchHandler}
+              deleteEventHandler={deleteEventHandler}
+              changeEventHandler={changeEventHandler}
+              />
 
-        </Box>
+          </Box>
       </Container>
     </Container>
   )

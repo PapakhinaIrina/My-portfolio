@@ -1,5 +1,5 @@
 
-export const CONTACTS = {
+export const CONSTANTS = {
   email : 'papakhina.irina@mail.ru',
   telegram : 'papakhina_irina',
   phoneNumber : '+7(926)424-92-79',

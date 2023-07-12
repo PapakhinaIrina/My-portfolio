@@ -2,10 +2,10 @@ import React from "react"
 import { Container, Typography, Box } from "@mui/material"
 import { Icon } from "@iconify/react"
 import { Animation } from "../../widgets/ui/animation/Animation"
-import { CONTACTS } from "../../shared/utils/constants"
+import { CONSTANTS } from "../../shared/utils/constants"
 import { ButtonHome } from "../../widgets/buttonHome/ButtonHome"
-import { headerHeight } from "../../shared/utils/constants/componentSize"
-import { spacing } from "../../shared/utils/constants/spacing"
+import { headerHeight } from "../../shared/utils/constants"
+import { spacing } from "../../shared/utils/constants"
 
 const textConnection = "Связь";
 const socialNetwork = "Социальные сети";
@@ -60,7 +60,7 @@ const Contact = () => {
               alignItems: "center",
             }}>
             <Icon icon="line-md:email" width={46} color="#777777"/>
-              { CONTACTS.email }
+              { CONSTANTS.email }
           </Box>
 
           <Box
@@ -70,7 +70,7 @@ const Contact = () => {
               flexDirection: "row",
             }}>
             <Icon icon="line-md:telegram" width={46} color="#777777"/>
-            { CONTACTS.telegram }
+            { CONSTANTS.telegram }
           </Box>
 
           <Box 
@@ -80,7 +80,7 @@ const Contact = () => {
               flexDirection: "row",
             }}>
             <Icon icon="ion:phone-portrait-outline" width={46} color="#777777"/>
-              { CONTACTS.phoneNumber }
+              { CONSTANTS.phoneNumber }
           </Box>
         </Box>
 
