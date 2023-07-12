@@ -1,8 +1,17 @@
 import React, {useEffect } from "react"
-import { Box, ListItem, List} from "@mui/material"
-import { StyledCalendarContainer, StyledCalendarWrapper, StyledCalendarBox, StyledCalendarWeek, StyledCalendarMonth, StyledCalendarDayButton, StyledDoubleClickedButton} from "./styled"
 import { FormModalEvent } from "../../widgets/formModalEvent/FormModalEvent"
-import { spacing } from "../../shared/utils/constants/spacing"
+import { StyledCalendarContainer, 
+        StyledCalendarWrapper, 
+        StyledCalendarBox, 
+        StyledCalendarWeek, 
+        StyledCalendarMonth, 
+        StyledCalendarDayButton, 
+        StyledDoubleClickedButton, 
+        StyledDayHeader, 
+        StyledDayHeaderPointer,
+        StyledListItemTitle,
+        StyledListItemDescription,
+        StyledList} from "./styled"
 import { v4 as uuidv4 } from 'uuid'
 import moment from 'moment'
 
@@ -30,10 +39,9 @@ export default function Calendar (props) {
   const isCurrentDay = (day) => moment().isSame(day, 'day');
   const isCurrentMonth = (month) => moment().isSame(month, 'month');
 
-
   return (
-    <StyledCalendarWrapper>
-      <StyledCalendarContainer>
+    <StyledCalendarWrapper disableGutters>
+      <StyledCalendarContainer disableGutters>
         <StyledCalendarBox>
           {[...Array(7)].map((_, i) => (
             <StyledCalendarWeek> 
@@ -43,79 +51,55 @@ export default function Calendar (props) {
 
           {
             arrDays.map((dayItem) => ( 
-              <StyledCalendarMonth 
+              <StyledCalendarMonth
+                disableGutters 
                 key={dayItem.unix()}
                 isWeekend={dayItem.day === 6 || dayItem.day === 0}
-                isCurrentMonth={isCurrentMonth(dayItem)}>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      justifyContent: "flex-end",
-                      height: "33px",
-                    }}>
-                    <Box 
-                      sx={{
-                        display: "flex",
-                        cursor: "pointer",
-                        justifyContent: "flex-end",
-                        marginTop: "3px",
-                      }}>
-                      <StyledCalendarDayButton 
-                        onDoubleClick={() => openModalFormHandler('Create', null, dayItem, setIsShowForm)}>
+                isCurrentMonth={isCurrentMonth(dayItem)}
+                >
+                  <StyledDayHeader>
+                    <StyledDayHeaderPointer>
+                      <StyledCalendarDayButton
+                        isCurrentDay={isCurrentDay(dayItem)}
+                        onDoubleClick={() => openModalFormHandler('Create', null, dayItem, setIsShowForm)}
+                        sx={{
+                          borderRadius: "50%",
+                          backgroundColor: isCurrentDay(dayItem) ? 'orange' : 'none',
+                          minWidth: "33px",
+                          color: isCurrentMonth(dayItem) ? "#616161" : "#eeeeee",
+                        }}>
                           {dayItem.format('D')}
                       </StyledCalendarDayButton>
-                    </Box>
-                  </Box>
+                    </StyledDayHeaderPointer>
+                  </StyledDayHeader>
+
                   {events && events.length > 0 && (
-                    <List
-                      component="nav" disablePadding disableGutters
-                      sx={{
-                        listStylePosition: "inside",
-                        margin: "unset",
-                        overflow: "scroll",
-                        paddingLeft: "8px",
-                        position: "relative",
-                        maxHeight: "calc(100px - 33px)",
-                        width: "100%"
-                      }}>
+                    <StyledList component="nav" disablePadding>
                       {
                       events
                         .filter(ev => ev.date >= dayItem.format('X') && ev.date <= dayItem.clone().endOf('day').format('X'))
                         .map(ev => 
-                          <StyledDoubleClickedButton 
-                            onDoubleClick={() => openModalFormHandler('Update', ev, dayItem)}>
-                              <ListItem key={uuidv4} disablePadding disableGutters
+                          <StyledDoubleClickedButton fullWidth
+                            onDoubleClick={() => openModalFormHandler('Update', ev, dayItem)}
+                            sx={{
+                              paddingTop: "0px"
+                            }}>
+                              <StyledListItemTitle key={uuidv4} disableGutters
                                 sx={{
-                                  fontSize: "8px",
-                                  fontWeight: "bolder",
-                                  position: "relative",
-                                  textAlign: "left",
-                                  overflow: "hidden",
-                                  textOverflow: "ellipsis",
-                                  whiteSpace: "nowrap",
-                                  textTransform: "capitalize",
+                                  paddingTop: "0px"
                                 }}>
                                 {ev.title}
-                              </ListItem>
-                              <ListItem key={uuidv4} disablePadding disableGutters
+                              </StyledListItemTitle>
+                              <StyledListItemDescription key={uuidv4} disableGutters
                                 sx={{
-                                  fontSize: "8px",
-                                  fontWeight: "bolder",
-                                  padding: spacing[1],
-                                  position: "relative",
-                                  textAlign: "left",
-                                  overflow: "hidden",
-                                  textOverflow: "ellipsis",
-                                  whiteSpace: "nowrap",
-                                  textTransform: "capitalize",
-                                  color: "rgba(68, 70, 70, 0.885)",
+                                  paddingTop: "0px"
                                 }}>
                                 {ev.description}
-                              </ListItem>
+                              </StyledListItemDescription>
                           </StyledDoubleClickedButton>
                           )
                       }
-                    </List>
+                    </StyledList>
                   )}
               </StyledCalendarMonth>
             ))

@@ -34,7 +34,7 @@ export const FormModalEvent = ({ isShowForm, cancelFormHandler, changeEventHandl
           type='text' 
           placeholder='Title'
           value={event ? event.title : ''}
-          onChange={e => changeEventHandler(e.target.value, 'title')} 
+          onChange={e => changeEventHandler(e.target.value, 'title')}
             sx={{
               backgroundColor: "rgb(251, 249, 246)",
               border: "1px solid rgba(184, 182, 182, 0.645)",

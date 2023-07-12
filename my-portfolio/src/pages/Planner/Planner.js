@@ -135,7 +135,7 @@ const Planner = () => {
               justifyContent: "center",
               alignItems: "center",
               fontSize: "30px",
-              fontFamily: "Dancing Script",
+              fontFamily: "cursive",
             }}>
             {[selectedMonthMonth , " ",selectedYearYear]}
             
@@ -175,8 +175,7 @@ const Planner = () => {
 
           <Box 
             sx={{
-              marginLeft: "8px",
-              fontFamily: "Cormorant", 
+              fontFamily: "cursive",
               fontWeight: "bold",
               fontSize: "25px"
             }}> Tasks for today :

@@ -1,7 +1,7 @@
 import { styled } from 'styled-components'
+import { Button, Box, Container, ListItem, List } from '@mui/material'
 import { headerHeight } from "../../shared/utils/constants"
-import { Button, Box, Container } from '@mui/material'
-
+import { spacing } from "../../shared/utils/constants/spacing"
 
 export const StyledCalendarWrapper = styled(Container) ({
   padding: "0"
@@ -10,7 +10,6 @@ export const StyledCalendarWrapper = styled(Container) ({
 export const StyledCalendarContainer = styled(Container) ({
   height:`calc(100vh - ${headerHeight})`,
   border: "1px solid rgba(105, 112, 112, 0.409)",
-  padding: "0"
 })
 
 export const StyledCalendarBox = styled(Box) ({
@@ -23,38 +22,79 @@ export const StyledCalendarBox = styled(Box) ({
 
 export const StyledCalendarWeek = styled(Box) ({
   display: "flex",
-  fontFamily: "Dancing Script",
+  fontFamily: "cursive",
   justifyContent: "flex-end",
   minWidth: "140px",
   maxHeight: "20px",
   paddingRight: "6px",
 })
 
-export const StyledCalendarMonth = styled(Box)(({currentMonth, otherMonth}) => {
+export const StyledCalendarMonth = styled(Box)(({isCurrentMonth, isOtherMonth}) => {
   return {
     border: "0.5px solid rgba(105, 112, 112, 0.409)",
-    color: "rgb(69, 132, 132)",
     minWidth: "140px",
     minHeight: "100px",
-    backgroundColor: otherMonth ? "hwb(0 82% 16% / 0.231)" : "hwb(0 100% 0%)",
-    // eslint-disable-next-line no-dupe-keys
-    color: currentMonth ? "rgb(69, 132, 132)" : "hwb(0 82% 16% / 0.231)",
+    backgroundColor: isCurrentMonth ? "hwb(0 100% 0%)": "hwb(0 82% 16% / 0.231)" ,
   }
 })
 
-export const StyledCalendarDayButton = styled(Button) (({currentDay, otherDay}) => {
-  return {
+export const StyledDayHeader = styled(Box) ({
+  display: "flex",
+  justifyContent: "flex-end",
+  height: "33px",
+})
+
+export const StyledDayHeaderPointer = styled(Box) ({
+  display: "flex",
+  cursor: "pointer",
+  justifyContent: "flex-end",
+  marginTop: "3px",
+})
+
+export const StyledCalendarDayButton = styled(Button) ({
     display: "flex",
     justifyContent: "flex-end",
-  }
 })
 
 export const StyledDoubleClickedButton = styled(Button) ({
-  width: "90px",
+  width: "139px",
   border: "unset",
   backgroundColor: "unset",
   color: "unset",
   cursor: "pointer",
-  margin: "0",
-  padding: "0"
+})
+
+export const StyledList = styled(List) ({
+  listStylePosition: "inside",
+  margin: "unset",
+  overflow: "scroll",
+  paddingRight: "0",
+  position: "relative",
+  maxHeight: "calc(100px - 33px)",
+  width: "100%"
+})
+
+export const StyledListItemTitle = styled(ListItem) ({
+  fontSize: "8px",
+  fontWeight: "bolder",
+  position: "relative",
+  textAlign: "left",
+  overflow: "hidden",
+  textOverflow: "ellipsis",
+  whiteSpace: "nowrap",
+  textTransform: "capitalize",
+  color: "37474f",
+})
+
+export const StyledListItemDescription = styled(ListItem) ({
+  fontSize: "8px",
+  fontWeight: "bolder",
+  padding: spacing[1],
+  position: "relative",
+  textAlign: "left",
+  overflow: "hidden",
+  textOverflow: "ellipsis",
+  whiteSpace: "nowrap",
+  textTransform: "capitalize",
+  color: "rgba(68, 70, 70, 0.885)",
 })
