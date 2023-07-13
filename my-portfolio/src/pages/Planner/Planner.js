@@ -84,6 +84,7 @@ const Planner = () => {
   }
 
   const eventFetchHandler = () => {
+    
     const fetchUrl = method === 'Update' ? `${url}/events/${event.id}` : `${url}/events`;
     const httpMethod = method === 'Update' ? 'PATCH' : 'POST';
     fetchHandler(fetchUrl, event, httpMethod);
@@ -101,6 +102,7 @@ const Planner = () => {
     })
       .then(res => res.json())
       .then(res => {
+        console.log(res);
         setEvents(prev => prev.filter(eventEl => eventEl.id !== event.id))
         cancelFormHandler()
       })
@@ -166,6 +168,7 @@ const Planner = () => {
           <Box>
             <Calendar 
               today={today}
+              method={method}
               events={events} 
               setEvents={setEvents}
               setIsShowForm={setIsShowForm}
@@ -240,6 +243,8 @@ const Planner = () => {
               eventFetchHandler={eventFetchHandler}
               deleteEventHandler={deleteEventHandler}
               changeEventHandler={changeEventHandler}
+              event={event}
+              method={method}
               />
 
           </Box>

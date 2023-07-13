@@ -2,7 +2,7 @@ import React from "react"
 import { StyledInputModalEvent } from "./styled"
 import { Box, Button, FormControl } from "@mui/material"
 
-export const FormModalEvent = ({ isShowForm, cancelFormHandler, changeEventHandler, eventFetchHandler, deleteEventHandler, method, event }) => {
+export const FormModalEvent = ({ isShowForm, cancelFormHandler, changeEventHandler, eventFetchHandler, deleteEventHandler, method, event}) => {
   return (
     isShowForm ? (
       <Box
@@ -34,7 +34,6 @@ export const FormModalEvent = ({ isShowForm, cancelFormHandler, changeEventHandl
               <StyledInputModalEvent disableUnderline
                 type='text' 
                 placeholder='Title'
-                // value={event}
                 onChange={e => changeEventHandler(e.target.value, 'title')}
                 sx={{
                   color: "rgba(68, 70, 70, 0.885)",
@@ -47,7 +46,6 @@ export const FormModalEvent = ({ isShowForm, cancelFormHandler, changeEventHandl
               <StyledInputModalEvent disableUnderline
                 type='text' 
                 placeholder='Description'
-                // value={event}
                 onChange={e => changeEventHandler(e.target.value, 'description')}  
                   sx={{
                     color: "rgba(68, 70, 70, 0.885)",
@@ -59,40 +57,39 @@ export const FormModalEvent = ({ isShowForm, cancelFormHandler, changeEventHandl
               sx={{
                 display: "flex",
                 justifyContent: "flex-end",
-                padding: "8px 14px",
                 position: "relative",
                 paddingBottom: "0px"
               }}>
               <Button 
                 onClick={() => cancelFormHandler()}
                 sx={{
-                  fontFamily: "Cormorant",  
+                  fontFamily: "serif",  
                   fontSize: "15px",
                   fontWeight: "bolder",
                   color: "rgb(73, 79, 79)"
                 }}>
-                  Cancel
+                CANCEL
               </Button>
               <Button 
                 onClick={() => eventFetchHandler()}
                 sx={{
-                  fontFamily: "Cormorant",  
+                  fontFamily: "serif", 
                   fontSize: "15px",
                   fontWeight: "bolder",
-                  color: "rgb(73, 79, 79)"
+                  color: "rgb(73, 79, 79)",
                 }}>
-                {method}
+                { method }
               </Button>
               {
                 method === 'Update' ? (
                   <Button 
-                  onClick={() => deleteEventHandler()}
-                  sx={{
-                    fontFamily: "Cormorant",  
-                    fontSize: "15px",
-                    fontWeight: "bolder",
-                    color: "rgb(73, 79, 79)"
-                  }}>
+                    onClick={() => deleteEventHandler()}
+                    sx={{
+                      fontFamily: "Cormorant",  
+                      fontSize: "15px",
+                      fontWeight: "bolder",
+                      color: "rgb(73, 79, 79)"
+                    }}>
                     DELETE
                   </Button>
                 ) : null

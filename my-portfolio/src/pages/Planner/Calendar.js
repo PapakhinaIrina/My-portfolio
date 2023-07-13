@@ -21,7 +21,8 @@ const url = 'http://localhost:3001';
 export default function Calendar (props) {
 
   const {
-        today, 
+        today,
+        method, 
         events, 
         setEvents, 
         setIsShowForm, 
@@ -126,6 +127,7 @@ export default function Calendar (props) {
               eventFetchHandler={eventFetchHandler}
               deleteEventHandler={deleteEventHandler}
               changeEventHandler={changeEventHandler}
+              method={method}
               />
         </StyledCalendarBox>
       </StyledCalendarContainer>
