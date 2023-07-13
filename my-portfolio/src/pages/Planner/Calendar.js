@@ -1,5 +1,5 @@
 import React, {useEffect } from "react"
-import { FormModalEvent } from "../../widgets/formModalEvent/FormModalEvent"
+import { FormModalEvent } from "../../widgets/ModalEvents/ModalEvents"
 import { StyledCalendarContainer, 
         StyledCalendarWrapper, 
         StyledCalendarBox, 
@@ -12,14 +12,25 @@ import { StyledCalendarContainer,
         StyledListItemTitle,
         StyledListItemDescription,
         StyledList} from "./styled"
-import { v4 as uuidv4 } from 'uuid'
 import moment from 'moment'
+import { v4 as uuidv4 } from 'uuid';
 
 const totalDays = 42;
 const url = 'http://localhost:3001';
 
 export default function Calendar (props) {
-  const {today, setEvents, events, setIsShowForm, openModalFormHandler, isShowForm, cancelFormHandler, changeEventHandler, eventFetchHandler, deleteEventHandler } = props;
+
+  const {
+        today, 
+        events, 
+        setEvents, 
+        setIsShowForm, 
+        openModalFormHandler, 
+        isShowForm, 
+        cancelFormHandler, 
+        changeEventHandler, 
+        eventFetchHandler, 
+        deleteEventHandler } = props;
   const startDate = today.startOf('week');
   const endDate = today.endOf('week');
   
@@ -53,13 +64,14 @@ export default function Calendar (props) {
             arrDays.map((dayItem) => ( 
               <StyledCalendarMonth
                 disableGutters 
-                key={dayItem.unix()}
+                key={uuidv4()}
                 isWeekend={dayItem.day === 6 || dayItem.day === 0}
                 isCurrentMonth={isCurrentMonth(dayItem)}
                 >
                   <StyledDayHeader>
                     <StyledDayHeaderPointer>
                       <StyledCalendarDayButton
+                        key={uuidv4()}
                         isCurrentDay={isCurrentDay(dayItem)}
                         onDoubleClick={() => openModalFormHandler('Create', null, dayItem, setIsShowForm)}
                         sx={{
@@ -74,23 +86,27 @@ export default function Calendar (props) {
                   </StyledDayHeader>
 
                   {events && events.length > 0 && (
-                    <StyledList component="nav" disablePadding>
+                    <StyledList component="nav"
+                      sx={{
+                        paddingLeft: "2px"
+                      }}>
                       {
                       events
                         .filter(ev => ev.date >= dayItem.format('X') && ev.date <= dayItem.clone().endOf('day').format('X'))
                         .map(ev => 
-                          <StyledDoubleClickedButton fullWidth
+                          <StyledDoubleClickedButton
+                            key={uuidv4()}
                             onDoubleClick={() => openModalFormHandler('Update', ev, dayItem)}
                             sx={{
-                              paddingTop: "0px"
+                            paddingTop: "0px",
                             }}>
-                              <StyledListItemTitle key={uuidv4} disableGutters
+                              <StyledListItemTitle key={uuidv4()} disableGutters
                                 sx={{
                                   paddingTop: "0px"
                                 }}>
                                 {ev.title}
                               </StyledListItemTitle>
-                              <StyledListItemDescription key={uuidv4} disableGutters
+                              <StyledListItemDescription key={uuidv4()} disableGutters
                                 sx={{
                                   paddingTop: "0px"
                                 }}>

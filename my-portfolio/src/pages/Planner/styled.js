@@ -62,13 +62,14 @@ export const StyledDoubleClickedButton = styled(Button) ({
   backgroundColor: "unset",
   color: "unset",
   cursor: "pointer",
+
 })
 
 export const StyledList = styled(List) ({
   listStylePosition: "inside",
   margin: "unset",
   overflow: "scroll",
-  paddingRight: "0",
+  paddingRight: "3px",
   position: "relative",
   maxHeight: "calc(100px - 33px)",
   width: "100%"

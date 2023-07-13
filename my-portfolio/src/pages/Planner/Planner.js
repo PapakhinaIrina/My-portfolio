@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react"
 import Calendar from "./Calendar"
-import FormModalEvent from "../../widgets/formModalEvent/FormModalEvent"
+import FormModalEvent from "../../widgets/ModalEvents/ModalEvents"
 import { Container, Button, Box } from "@mui/material"
 import { Icon } from "@iconify/react"
 import { spacing } from "../../shared/utils/constants/spacing"
@@ -165,11 +165,17 @@ const Planner = () => {
 
           <Box>
             <Calendar 
-              events={events} 
-              setEvents={setEvents} 
               today={today}
+              events={events} 
+              setEvents={setEvents}
               setIsShowForm={setIsShowForm}
               openModalFormHandler={openModalFormHandler}
+              isShowForm={isShowForm}
+              cancelFormHandler={cancelFormHandler}
+              changeEventHandler={changeEventHandler}
+              eventFetchHandler={eventFetchHandler}
+              deleteEventHandler={deleteEventHandler}
+              openFormHandler={openFormHandler}
               />
           </Box>
 
